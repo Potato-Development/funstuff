@@ -1,0 +1,76 @@
+.App {
+  display: block;
+  position: absolute;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-image: url(../public/images/wallpaper.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+i {
+  padding: 5px;
+  border-radius: 4px;
+  font-style: normal;
+  font-size: 12px;
+}
+
+i > .picture {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto;
+}
+i > .picture > img {
+  width: 100%;
+  height: 100%;
+}
+i > .name {
+  margin-top: 3px;
+  width: 72px;
+  color: rgb(247, 247, 247);
+  text-align: center;
+  text-shadow: 2px 2px 3px #000;
+  user-select: none;
+}
+
+i:hover {
+  box-shadow: 0 0 0 2px rgba(200, 224, 255, 0.71) inset;
+  background-color: rgba(197, 222, 255, 0.3);
+}
+
+i.focus,
+i.selected {
+  box-shadow: 0 0 0 2px rgba(200, 224, 255, 0.71) inset;
+  background-color: rgba(197, 222, 255, 0.77);
+}
+
+i#recycle_bin {
+  position: absolute;
+  top: 20px;
+  left: 100px;
+}
+
+i#notepad {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.iconcontainer {
+  width: fit-content;
+  height: fit-content;
+}
+
+.title-bar-text {
+  user-select: none;
+}
+
+.placeholder {
+  width: 300px;
+  height: 100px;
+}
