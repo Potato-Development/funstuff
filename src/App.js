@@ -128,7 +128,10 @@ const Window = ({ onClose }) => {
           </div>
         </div>
         <div class="window-body has-space">
-          <div className="placeholder">Work in Progress...</div>
+          <div className="placeholder">
+            <p>Drag Me!</p>
+            <p>Work in Progress...</p>
+          </div>
         </div>
       </div>
     </Rnd>
