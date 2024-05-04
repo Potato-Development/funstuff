@@ -11,18 +11,25 @@ function App() {
 
   const handleClick = (id) => {
     if (selectedIcon === id) {
-      setSelectedIcon(null);
-      addWindow();
+      if (id === "notepad") {
+        addAboutWindow();
+      } else if (id === "recycle_bin") {
+        handleRecycleBin();
+      }
     } else {
       setSelectedIcon(id);
     }
   };
 
-  const addWindow = () => {
+  const addAboutWindow = () => {
     if (windows.length === 0) {
       const newWindow = <Window key={windows.length} onClose={() => closeWindow(windows.length)}/>;
       setWindows([newWindow]);
     }
+  };
+
+  const handleRecycleBin = () => {
+    alert("Recycle Bin clicked");
   };
   
 
