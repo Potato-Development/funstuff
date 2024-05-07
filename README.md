@@ -30,16 +30,15 @@
 
 ## Features
 
-* Feature 1
-* Feature 2
-* Feature 3
+* Interactive icons - desktop icons that mimic the original Windows 7 behavior
+* Accurate windows - accurate windows that contain the different website functions
+* Website sounds - a toggleable and controllable mouse click sound effect
 
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [ ] More customization options for the website e.g. background, theme, colors
+- [ ] Way more icons and therefore way more activities
+- [ ] Much larger sound functionality
 
 ## License
 
