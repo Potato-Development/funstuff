@@ -1,11 +1,11 @@
 ![Website](https://img.shields.io/website?url=http%3A//reactfunstuff.vercel.app)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/t/MPotato-Development/funstuff)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/t/Potato-Development/funstuff)
 ![GitHub last commit](https://img.shields.io/github/last-commit/Potato-Development/funstuff)
 
 <br />
 <div align="center">
   <a href="https://github.com/Potato-Development/funstuff">
-    <img src="public/images/logo180.png" alt="Logo" width="80" height="80">
+    <img src="images/logo180.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Fun Stuff</h3>
