@@ -12,7 +12,7 @@ function App() {
   const iconRef2 = useRef(null);
   const iconRef3 = useRef(null);
   const iconRef4 = useRef(null);
-  const [clickVolume, setClickVolume] = useState(3)
+  const [clickVolume, setClickVolume] = useState(2)
   const [playClick] = useSound(clicksound, { volume: clickVolume });
   const [openWindows, setOpenWindows] = useState({});
 
@@ -220,7 +220,12 @@ const PetWindow = ({ onClose }) => {
   const [selectedPet, setSelectedPet] = useState("bonzi");
 
   const togglePet = () => {
-    setSelectedPet(selectedPet === "bonzi" ? "clippy" : "bonzi");
+    setSelectedPet(prevPet => {
+      if (prevPet === "bonzi") return "peedy";
+      else if (prevPet === "peedy") return "clippy";
+      else if (prevPet === "clippy") return "rover";
+      else return "bonzi";
+    });
   };
 
   return (
@@ -276,8 +281,7 @@ const SoundWindow = ({ onClose, clickVolume, setClickVolume }) => {
           </div>
         </div>
         <div className="window-body has-space">
-            <p>Sound Panel</p>
-            <p>Work in Progress...</p>
+            <label>Volume</label>
             <input
               type="range"
               min="0"
