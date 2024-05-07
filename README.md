@@ -28,6 +28,12 @@
 
 [![React][React.js]][React-url]
 
+## Features
+
+* Feature 1
+* Feature 2
+* Feature 3
+
 ## Roadmap
 
 - [ ] Feature 1
