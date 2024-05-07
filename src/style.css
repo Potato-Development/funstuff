@@ -96,3 +96,15 @@ i#recyclebin {
   width: 150px;
   height: 150px;
 }
+
+body {
+  cursor: default;
+}
+
+.title-bar {
+  cursor: move;
+}
+
+button, i {
+  cursor: pointer;
+}
