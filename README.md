@@ -23,3 +23,34 @@
     <a href="https://github.com/Potato-Development/funstuff/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
   </p>
 </div>
+
+## Built With
+
+* [![React][React.js]][React-url]
+
+## Roadmap
+
+- [ ] Feature 1
+- [ ] Feature 2
+- [ ] Feature 3
+    - [ ] Nested Feature
+
+See the [open issues](https://github.com/Potato-Development/funstuff/issues) for a full list of proposed features (and known issues).
+
+## License
+
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+
+## Contact
+
+Me - [MysteryFlask](https://github.com/MysteryFlask)
+
+Organization - [Potato Development](https://github.com/Potato-Development)
+
+Project Link: [https://github.com/Potato-Development/funstuff](https://github.com/Potato-Development/funstuff)
+
+## Acknowledgments
+
+* []()
+* []()
+* []()
