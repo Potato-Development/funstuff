@@ -50,16 +50,28 @@ i.selected {
   background-color: rgba(197, 222, 255, 0.77);
 }
 
-i#recycle_bin {
+i#notepad {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+i#virtualpet {
   position: absolute;
   top: 20px;
   left: 100px;
 }
 
-i#notepad {
+i#soundpanel {
   position: absolute;
   top: 20px;
-  left: 20px;
+  left: 180px;
+}
+
+i#recyclebin {
+  position: absolute;
+  top: 20px;
+  left: 260px;
 }
 
 .iconcontainer {
@@ -74,4 +86,13 @@ i#notepad {
 .placeholder {
   width: 300px;
   height: 100px;
+}
+
+.petwindow {
+  display: table-caption;
+}
+
+.petimg {
+  width: 150px;
+  height: 150px;
 }
