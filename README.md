@@ -51,7 +51,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Me - [MysteryFlask](https://github.com/MysteryFlask)
 
-Organization - [Potato Development](https://github.com/Potato-Development)
+Organization - [Potato-Development](https://github.com/Potato-Development)
 
 Project Link - [https://github.com/Potato-Development/funstuff](https://github.com/Potato-Development/funstuff)
 
