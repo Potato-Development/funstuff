@@ -12,8 +12,13 @@ function App() {
   const iconRef2 = useRef(null);
   const iconRef3 = useRef(null);
   const iconRef4 = useRef(null);
-  const [playClick] = useSound(clicksound, { volume: 0 });
+  const [clickVolume, setClickVolume] = useState(3)
+  const [playClick] = useSound(clicksound, { volume: clickVolume });
   const [openWindows, setOpenWindows] = useState({});
+
+  const handleVolumeChange = (volume) => {
+    setClickVolume(volume);
+  };
 
   const handleClick = (id) => {
     if (selectedIcon === id) {
@@ -52,7 +57,7 @@ function App() {
   };
 
   const addSoundWindow = () => {
-    const newWindow = <SoundWindow key={windows.length} onClose={() => closeWindow("sound")} />;
+    const newWindow = <SoundWindow key={windows.length} clickVolume={clickVolume} setClickVolume={handleVolumeChange} onClose={() => closeWindow("sound")} />;
     setWindows([...windows, newWindow]);
     setOpenWindows({ ...openWindows, sound: true });
     console.log("openWindows after adding sound window:", openWindows);
@@ -247,7 +252,13 @@ const PetWindow = ({ onClose }) => {
   );
 };
 
-const SoundWindow = ({ onClose }) => {
+const SoundWindow = ({ onClose, clickVolume, setClickVolume }) => {
+  const [sliderValue, setSliderValue] = useState(clickVolume);
+
+  const handleSaveClick = () => {
+    setClickVolume(sliderValue);
+  };
+
   return (
     <Rnd
       default={{
@@ -265,10 +276,18 @@ const SoundWindow = ({ onClose }) => {
           </div>
         </div>
         <div className="window-body has-space">
-          <div className="placeholder">
             <p>Sound Panel</p>
             <p>Work in Progress...</p>
-          </div>
+            <input
+              type="range"
+              min="0"
+              max="10"
+              step={0.1}
+              value={sliderValue}
+              onChange={(event) => setSliderValue(event.target.value)}
+            />
+            <p>Value: {sliderValue}</p>
+            <button onClick={handleSaveClick}>Save</button>
         </div>
       </div>
     </Rnd>
