@@ -8,7 +8,7 @@
     <img src="public/logo180.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">Fun Stuff</h3>
+<h3 align="center" style="margin-top: 16px; margin-bottom: 12px;">Fun Stuff</h3>
 
   <p align="center">
     A fun website styled to look like Windows 7, built in React.
