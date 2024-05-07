@@ -12,7 +12,7 @@ function App() {
   const iconRef2 = useRef(null);
   const iconRef3 = useRef(null);
   const iconRef4 = useRef(null);
-  const [clickVolume, setClickVolume] = useState(2)
+  const [clickVolume, setClickVolume] = useState(0)
   const [playClick] = useSound(clicksound, { volume: clickVolume });
   const [openWindows, setOpenWindows] = useState({});
 
@@ -285,12 +285,12 @@ const SoundWindow = ({ onClose, clickVolume, setClickVolume }) => {
             <input
               type="range"
               min="0"
-              max="10"
+              max="1"
               step={0.1}
               value={sliderValue}
               onChange={(event) => setSliderValue(event.target.value)}
             />
-            <p>Value: {sliderValue}</p>
+            <p>Value: {sliderValue * 10}</p>
             <button onClick={handleSaveClick}>Save</button>
         </div>
       </div>
