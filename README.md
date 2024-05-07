@@ -8,13 +8,18 @@
     <img src="public/logo180.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center" style="margin-top: 16px; margin-bottom: 12px;">Fun Stuff</h3>
+<h3 align="center">Fun Stuff</h3>
 
   <p align="center">
     A fun website styled to look like Windows 7, built in React.
     <br />
+    <a href="https://github.com/Potato-Development/funstuff/blob/master/src/App.js"><strong>Explore the Code</strong></a>
+    <br />
+    <br />
     <a href="https://reactfunstuff.vercel.app">Demo Website</a>
     ·
     <a href="https://github.com/Potato-Development/funstuff/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    ·
+    <a href="https://github.com/Potato-Development/funstuff/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
   </p>
 </div>
