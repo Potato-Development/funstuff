@@ -57,9 +57,8 @@ Project Link - [https://github.com/Potato-Development/funstuff](https://github.c
 
 ## Acknowledgments
 
-* []()
-* []()
-* []()
+* [salmanarif](https://www.deviantart.com/salmanarif) and [Animelove_1105](http://www.rw-designer.com/user/105799) for the original icon files.
+* [The64thGamer](https://www.spriters-resource.com/submitter/The64thGamer/) and [Siul](https://www.spriters-resource.com/submitter/Siul/) for the sprite files.
 
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
