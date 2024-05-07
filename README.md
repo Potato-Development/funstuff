@@ -41,8 +41,6 @@
 - [ ] Feature 3
     - [ ] Nested Feature
 
-See the [open issues](https://github.com/Potato-Development/funstuff/issues) for a full list of proposed features (and known issues).
-
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
