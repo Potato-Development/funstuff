@@ -37,8 +37,11 @@
 ## Roadmap
 
 - [ ] More customization options for the website e.g. background, theme, colors
-- [ ] Way more icons and therefore way more activities
 - [ ] Much larger sound functionality
+- [ ] Way more icons and therefore way more activities
+    - [ ] Mini Horror Game
+    - [ ] Online Chat Room Replica
+    - [ ] Browser - either internet enabled or not
 
 ## License
 
