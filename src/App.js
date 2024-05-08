@@ -290,7 +290,11 @@ const SoundWindow = ({ onClose, clickVolume, setClickVolume }) => {
               value={sliderValue}
               onChange={(event) => setSliderValue(event.target.value)}
             />
-            <p>Value: {sliderValue * 10}</p>
+            {sliderValue === 0 ? (
+              <p>Muted</p>
+            ) : (
+              <p>Value: {sliderValue * 10}</p>
+            )}
             <button onClick={handleSaveClick}>Save</button>
         </div>
       </div>
