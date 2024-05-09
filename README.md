@@ -41,7 +41,7 @@
 - [ ] Way more icons and therefore way more activities
     - [ ] Mini Horror Game
     - [ ] Online Chat Room Replica - Windows Live Messenger
-    - [ ] Browser - either internet enabled or not
+    - [ ] Browser - IE - either internet enabled or not
 
 ## License
 
