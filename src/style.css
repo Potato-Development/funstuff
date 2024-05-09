@@ -68,10 +68,16 @@ i#soundpanel {
   left: 180px;
 }
 
-i#recyclebin {
+i#chat {
   position: absolute;
   top: 20px;
   left: 260px;
+}
+
+i#recyclebin {
+  position: absolute;
+  top: 20px;
+  left: 340px;
 }
 
 .iconcontainer {
