@@ -59,7 +59,7 @@ i#notepad {
 i#virtualpet {
   position: absolute;
   top: 20px;
-  left: 20px;
+  left: 100px;
 }
 
 i#soundpanel {
@@ -83,7 +83,7 @@ i#internet {
 i#recyclebin {
   position: absolute;
   top: 20px;
-  left: 100px;
+  left: 20px;
 }
 
 .iconcontainer {
