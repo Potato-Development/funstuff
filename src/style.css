@@ -52,20 +52,20 @@ i.selected {
 
 i#notepad {
   position: absolute;
-  top: 100px;
-  left: 100px;
+  top: 20px;
+  left: 180px;
 }
 
 i#virtualpet {
   position: absolute;
-  top: 20px;
+  top: 100px;
   left: 100px;
 }
 
 i#soundpanel {
   position: absolute;
   top: 20px;
-  left: 180px;
+  left: 100px;
 }
 
 i#chat {
