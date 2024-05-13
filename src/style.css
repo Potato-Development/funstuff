@@ -80,6 +80,12 @@ i#internet {
   left: 260px;
 }
 
+i#computer {
+  position: absolute;
+  top: 100px;
+  left: 180px;
+}
+
 i#recyclebin {
   position: absolute;
   top: 20px;
