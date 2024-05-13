@@ -14,6 +14,7 @@ function App() {
   const iconRef4 = useRef(null);
   const iconRef5 = useRef(null);
   const iconRef6 = useRef(null);
+  const iconRef7 = useRef(null);
   const [clickVolume, setClickVolume] = useState(0);
   const [playClick] = useSound(clicksound, { volume: clickVolume });
   const [openWindows, setOpenWindows] = useState({});
@@ -46,7 +47,10 @@ function App() {
         if (!openWindows["internet"]) {
           addInternetWindow();
         }
-      }
+      } else if (id === "computer") {
+        if (!openWindows["computer"]) {
+          addComputerWindow();
+        }
     } else {
       setSelectedIcon(id);
     }
@@ -87,6 +91,13 @@ function App() {
     console.log("openWindows after adding internet window:", openWindows);
   };
 
+  const addComputerWindow = () => {
+    const newWindow = <ComputerWindow key={windows.length} onClose={() => closeWindow("computer")} />;
+    setWindows([...windows, newWindow]);
+    setOpenWindows({ ...openWindows, computer: true });
+    console.log("openWindows after adding computer window:", openWindows);
+  };
+
   const handleRecycleBin = () => {
     alert("Recycle Bin clicked");
   };
@@ -109,6 +120,9 @@ function App() {
       } else if (type === "internet" && window.type === "internet") {
         updatedOpenWindows.internet = false;
         return false;
+      } else if (type === "computer" && window.type === "computer") {
+        updatedOpenWindows.computer = false;
+        return false;
       }
       return true;
     });
@@ -130,7 +144,9 @@ function App() {
         iconRef5.current &&
         !iconRef5.current.contains(event.target) &&
         iconRef6.current &&
-        !iconRef6.current.contains(event.target)
+        !iconRef6.current.contains(event.target) &&
+        iconRef7.current &&
+        !iconRef7.current.contains(event.target)
       ) {
         setSelectedIcon(null);
       }
@@ -212,10 +228,23 @@ function App() {
           </div>
         </Icon>
         <Icon
+          id="computer"
+          isSelected={selectedIcon === "computer"}
+          onClick={() => handleClick("computer")}
+          ref={iconRef6}
+        >
+          <div className="picture">
+            <img src="icons/computer.png" alt="Computer" />
+          </div>
+          <div className="name">
+            <span>Computer</span>
+          </div>
+        </Icon>
+        <Icon
           id="recyclebin"
           isSelected={selectedIcon === "recyclebin"}
           onClick={() => handleClick("recyclebin")}
-          ref={iconRef6}
+          ref={iconRef7}
         >
           <div className="picture">
             <img src="icons/recyclebin.png" alt="Recycle Bin" />
@@ -410,6 +439,35 @@ const InternetWindow = ({ onClose }) => {
         <div className="window-body has-space">
           <div className="placeholder">
             <p>Internet Explorer</p>
+            <p>Work in Progress...</p>
+          </div>
+        </div>
+      </div>
+    </Rnd>
+  );
+};
+
+const ComputerWindow = ({ onClose }) => {
+  return (
+    <Rnd
+      default={{
+        x: 200,
+        y: 200
+      }}
+      enableResizing={false}
+      dragHandleClassName="title-bar"
+    >
+      <div className="window active">
+        <div className="title-bar">
+          <div className="title-bar-text">Computer</div>
+          <div className="title-bar-controls">
+            <button aria-label="Close" onClick={onClose}></button>
+          </div>
+        </div>
+        <div className="window-body has-space">
+          <div className="placeholder">
+            <p>Computer</p>
+            <p>This PC</p>
             <p>Work in Progress...</p>
           </div>
         </div>
