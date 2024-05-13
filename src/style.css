@@ -52,14 +52,14 @@ i.selected {
 
 i#notepad {
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 100px;
+  left: 100px;
 }
 
 i#virtualpet {
   position: absolute;
   top: 20px;
-  left: 100px;
+  left: 20px;
 }
 
 i#soundpanel {
@@ -82,7 +82,7 @@ i#internet {
 
 i#recyclebin {
   position: absolute;
-  top: 100px;
+  top: 20px;
   left: 100px;
 }
 
