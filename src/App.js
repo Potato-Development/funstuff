@@ -196,10 +196,10 @@ function App() {
           ref={iconRef3}
         >
           <div className="picture">
-            <img src="icons/sound.png" alt="Sound Panel" />
+            <img src="icons/sound.png" alt="Sound" />
           </div>
           <div className="name">
-            <span>Sound Panel</span>
+            <span>Sound</span>
           </div>
         </Icon>
         <Icon
@@ -365,7 +365,7 @@ const SoundWindow = ({ onClose, clickVolume, setClickVolume }) => {
     >
       <div className="window active">
         <div className="title-bar">
-          <div className="title-bar-text">Sound Panel</div>
+          <div className="title-bar-text">Sound</div>
           <div className="title-bar-controls">
             <button aria-label="Close" onClick={onClose}></button>
           </div>
