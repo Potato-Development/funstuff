@@ -25,17 +25,17 @@ function App() {
 
   const handleClick = (id) => {
     if (selectedIcon === id) {
-      if (id === "notepad") {
+      if (id === "about") {
         if (!openWindows["about"]) {
           addAboutWindow();
         }
       } else if (id === "recyclebin") {
         handleRecycleBin();
-      } else if (id === "virtualpet") {
+      } else if (id === "pet") {
         if (!openWindows["pet"]) {
           addPetWindow();
         }
-      } else if (id === "soundpanel") {
+      } else if (id === "sound") {
         if (!openWindows["sound"]) {
           addSoundWindow();
         }
@@ -164,39 +164,39 @@ function App() {
     <div className="App" onMouseDownCapture={playClick}>
       <div className="iconcontainer">
         <Icon
-          id="notepad"
-          isSelected={selectedIcon === "notepad"}
-          onClick={() => handleClick("notepad")}
+          id="about"
+          isSelected={selectedIcon === "about"}
+          onClick={() => handleClick("about")}
           ref={iconRef1}
         >
           <div className="picture">
-            <img src="icons/notepad.png" alt="Notepad" />
+            <img src="icons/about.png" alt="About" />
           </div>
           <div className="name">
             <span>About</span>
           </div>
         </Icon>
         <Icon
-          id="virtualpet"
-          isSelected={selectedIcon === "virtualpet"}
-          onClick={() => handleClick("virtualpet")}
+          id="pet"
+          isSelected={selectedIcon === "pet"}
+          onClick={() => handleClick("pet")}
           ref={iconRef2}
         >
           <div className="picture">
-            <img src="icons/virtualpet.png" alt="Virtual Pet" />
+            <img src="icons/pet.png" alt="Virtual Pet" />
           </div>
           <div className="name">
             <span>Virtual Pet</span>
           </div>
         </Icon>
         <Icon
-          id="soundpanel"
-          isSelected={selectedIcon === "soundpanel"}
-          onClick={() => handleClick("soundpanel")}
+          id="sound"
+          isSelected={selectedIcon === "sound"}
+          onClick={() => handleClick("sound")}
           ref={iconRef3}
         >
           <div className="picture">
-            <img src="icons/soundpanel.png" alt="Sound Panel" />
+            <img src="icons/sound.png" alt="Sound Panel" />
           </div>
           <div className="name">
             <span>Sound Panel</span>
