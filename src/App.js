@@ -15,6 +15,7 @@ function App() {
   const iconRef5 = useRef(null);
   const iconRef6 = useRef(null);
   const iconRef7 = useRef(null);
+  const iconRef8 = useRef(null);
   const [clickVolume, setClickVolume] = useState(0);
   const [playClick] = useSound(clicksound, { volume: clickVolume });
   const [openWindows, setOpenWindows] = useState({});
@@ -51,6 +52,8 @@ function App() {
         if (!openWindows["computer"]) {
           addComputerWindow();
         }
+      } else if (id === "horror") {
+        handleHorrorStart();
       }
     } else {
       setSelectedIcon(id);
@@ -103,6 +106,10 @@ function App() {
     alert("Recycle Bin clicked");
   };
 
+  const handleHorrorStart = () => {
+    alert("Something spooky is brewing...");
+  };
+
   const closeWindow = (type) => {
     const updatedOpenWindows = { ...openWindows };
     const updatedWindows = windows.filter((window) => {
@@ -147,7 +154,9 @@ function App() {
         iconRef6.current &&
         !iconRef6.current.contains(event.target) &&
         iconRef7.current &&
-        !iconRef7.current.contains(event.target)
+        !iconRef7.current.contains(event.target) &&
+        iconRef8.current &&
+        !iconRef8.current.contains(event.target)
       ) {
         setSelectedIcon(null);
       }
@@ -252,6 +261,19 @@ function App() {
           </div>
           <div className="name">
             <span>Recycle Bin</span>
+          </div>
+        </Icon>
+        <Icon
+          id="horror"
+          isSelected={selectedIcon === "horror"}
+          onClick={() => handleClick("horror")}
+          ref={iconRef8}
+        >
+          <div className="picture">
+            <img src="icons/horror.png" alt="Horror" />
+          </div>
+          <div className="name">
+            <span>Horror</span>
           </div>
         </Icon>
       </div>
