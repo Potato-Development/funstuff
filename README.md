@@ -44,7 +44,6 @@
 - [ ] Internet Explorer recreation with one website
 - [ ] Windows Live Messenger with friends and chat tab
 - [ ] Complex horror experience with many features
-- [ ] Icons lined down the left side vertically
 
 ## License
 
