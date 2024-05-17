@@ -13,14 +13,14 @@
   <p align="center">
     A fun website styled to look like Windows 7, built in React.
     <br />
-    <a href="https://github.com/Potato-Development/funstuff/blob/master/src/App.js"><strong>Explore the Code</strong></a>
+    <a href="https://reactfunstuff.vercel.app"><strong>Demo</strong></a>
     <br />
     <br />
-    <a href="https://reactfunstuff.vercel.app">Demo Website</a>
+    <a href="https://github.com/Potato-Development/funstuff/blob/master/src/App.js">View the Code</a>
     ·
     <a href="https://github.com/Potato-Development/funstuff/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     ·
-    <a href="https://github.com/Potato-Development/funstuff/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    <a href="https://github.com/Potato-Development/funstuff/issues/new?labels=enhancement&template=feature-request---.md">Request a Feature</a>
   </p>
 </div>
 
@@ -36,12 +36,14 @@
 
 ## Roadmap
 
-- [ ] More customization options for the website e.g. background, theme, colors
-- [ ] Much larger sound functionality
-- [ ] Way more icons and therefore way more activities
-    - [ ] Mini Horror Game
-    - [ ] Online Chat Room Replica - Windows Live Messenger
-    - [ ] Browser - IE - either internet enabled or not
+- [ ] Taskbar with an option to hide
+- [ ] Larger sound functionality with error and success sounds
+- [ ] Custom classic cursors
+- [ ] Original Notepad app
+- [ ] Automatic fullscreen on load
+- [ ] Internet Explorer recreation with one website
+- [ ] Windows Live Messenger with friends and chat tab
+- [ ] Complex horror experience with many features
 
 ## License
 
@@ -59,6 +61,7 @@ Project Link - [https://github.com/Potato-Development/funstuff](https://github.c
 
 * [salmanarif](https://www.deviantart.com/salmanarif) and [Animelove_1105](http://www.rw-designer.com/user/105799) for the original icon files.
 * [The64thGamer](https://www.spriters-resource.com/submitter/The64thGamer/) and [Siul](https://www.spriters-resource.com/submitter/Siul/) for the sprite files.
+* All the people of [this thread](https://wink.messengergeek.com/t/resource-hacking-wlm-2009) for the Windows Live Messenger files.
 
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
