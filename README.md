@@ -44,6 +44,7 @@
 - [ ] Internet Explorer recreation with one website
 - [ ] Windows Live Messenger with friends and chat tab
 - [ ] Complex horror experience with many features
+- [ ] Fake Windows update icon (credit to [edamame-maru](https://github.com/edamame-maru))
 
 ## License
 
