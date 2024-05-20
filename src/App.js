@@ -16,6 +16,7 @@ function App() {
   const iconRef6 = useRef(null);
   const iconRef7 = useRef(null);
   const iconRef8 = useRef(null);
+  const iconRef9 = useRef(null);
   const [clickVolume, setClickVolume] = useState(0);
   const [playClick] = useSound(clicksound, { volume: clickVolume });
   const [openWindows, setOpenWindows] = useState({});
@@ -54,6 +55,8 @@ function App() {
         }
       } else if (id === "horror") {
         handleHorrorStart();
+      } else if (id === "update") {
+        handleUpdateStart();
       }
     } else {
       setSelectedIcon(id);
@@ -110,6 +113,10 @@ function App() {
     alert("Something spooky is brewing...");
   };
 
+  const handleUpdateStart = () => {
+    alert("Development takes time...");
+  };
+
   const closeWindow = (type) => {
     const updatedOpenWindows = { ...openWindows };
     const updatedWindows = windows.filter((window) => {
@@ -127,9 +134,6 @@ function App() {
         return false;
       } else if (type === "internet" && window.type === "internet") {
         updatedOpenWindows.internet = false;
-        return false;
-      } else if (type === "computer" && window.type === "computer") {
-        updatedOpenWindows.computer = false;
         return false;
       }
       return true;
@@ -156,7 +160,9 @@ function App() {
         iconRef7.current &&
         !iconRef7.current.contains(event.target) &&
         iconRef8.current &&
-        !iconRef8.current.contains(event.target)
+        !iconRef8.current.contains(event.target) &&
+        iconRef9.current &&
+        !iconRef9.current.contains(event.target)
       ) {
         setSelectedIcon(null);
       }
@@ -274,6 +280,19 @@ function App() {
           </div>
           <div className="name">
             <span>Horror</span>
+          </div>
+        </Icon>
+        <Icon
+          id="update"
+          isSelected={selectedIcon === "update"}
+          onClick={() => handleClick("update")}
+          ref={iconRef9}
+        >
+          <div className="picture">
+            <img src="icons/update.png" alt="Update" />
+          </div>
+          <div className="name">
+            <span>Update</span>
           </div>
         </Icon>
       </div>

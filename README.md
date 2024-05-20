@@ -37,6 +37,7 @@
 ## Roadmap
 
 - [ ] Taskbar with an option to hide
+- [ ] Start icon and time/date on taskbar
 - [ ] Larger sound functionality with error and success sounds
 - [ ] Custom classic cursors
 - [ ] Original Notepad app
@@ -44,6 +45,7 @@
 - [ ] Internet Explorer recreation with one website
 - [ ] Windows Live Messenger with friends and chat tab
 - [ ] Complex horror experience with many features
+- [ ] Notifications either automatic or manually triggered
 - [ ] Fake Windows update icon (credit to [edamame-maru](https://github.com/edamame-maru))
 
 ## License

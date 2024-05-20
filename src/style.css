@@ -98,6 +98,12 @@ i#horror {
   left: 20px;
 }
 
+i#update {
+  position: absolute;
+  top: 340px;
+  left: 20px;
+}
+
 .iconcontainer {
   width: fit-content;
   height: fit-content;
