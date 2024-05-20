@@ -66,6 +66,7 @@ Project Link - [https://github.com/Potato-Development/funstuff](https://github.c
 * [The64thGamer](https://www.spriters-resource.com/submitter/The64thGamer/) and [Siul](https://www.spriters-resource.com/submitter/Siul/) for the sprite files.
 * All the people of [this thread](https://wink.messengergeek.com/t/resource-hacking-wlm-2009) for the Windows Live Messenger files.
 * [Michaelsoft Binbows 7](https://win7.nota-robot.com/) and [Andy's Desk](https://desk.glitchy.website/) for inspiration.
+* [This](https://archive.org/details/explorer-archive) archive for the original start menu icon.
 
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
