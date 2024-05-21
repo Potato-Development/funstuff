@@ -138,3 +138,51 @@ body {
 button, i {
   cursor: pointer;
 }
+
+.taskbarcontainer {
+  --accent: #434444;
+  --aero-white: #ffffff7a;
+  --aero-black: #000000bd;
+  --aero-color: rgba( 116, 184, 252, calc(.7 * 50%) );
+  --aero-accent: color-mix(in srgb, #000, color-mix(in srgb, var(--aero-color) var(--saturation), transparent) var(--brightness));
+  --saturation: 50%;
+  --brightness: 90%;
+  --intensity: 50%;
+}
+
+.taskbar {
+  z-index: 999999999999999999;
+  position: absolute;
+  bottom: 0;
+  height: 40px;
+  width: 100vw;
+}
+
+.fg {
+  background: url(./assets/images/glass.png) center center / cover no-repeat fixed;
+  outline: solid thin var(--aero-black);
+  box-shadow: inset 0 1px 0 0 var(--aero-white);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.bg {
+  background-color: var(--aero-accent);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.start-button {
+  width: 0px;
+  height: 54px;
+  position: relative;
+}
+
+.start-button>* {
+  position: absolute;
+}
+
+.start-normal {
+  opacity: 1;
+}

@@ -57,6 +57,8 @@ function App() {
         handleHorrorStart();
       } else if (id === "update") {
         handleUpdateStart();
+      } else if (id === "start") {
+        handleStartClick();
       }
     } else {
       setSelectedIcon(id);
@@ -115,6 +117,10 @@ function App() {
 
   const handleUpdateStart = () => {
     alert("Development takes time...");
+  };
+
+  const handleStartClick = () => {
+    alert("Coming soon...");
   };
 
   const closeWindow = (type) => {
@@ -301,6 +307,14 @@ function App() {
         console.log("Window component:", window.type.name);
         return <div key={index}>{window}</div>;
       })}
+      </div>
+      <div className="taskbarcontainer">
+        <div className="taskbar bg"></div>
+        <div className="taskbar fg">
+          <div className="start start-button">
+            <img className="start start-normal" src="icons/start.png" alt="Start"/>
+          </div>
+        </div>
       </div>
     </div>
   );
