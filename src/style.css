@@ -146,7 +146,7 @@ button, i {
   --aero-color: rgba( 116, 184, 252, calc(.7 * 50%) );
   --aero-accent: color-mix(in srgb, #000, color-mix(in srgb, var(--aero-color) var(--saturation), transparent) var(--brightness));
   --saturation: 50%;
-  --brightness: 90%;
+  --brightness: 60%;
   --intensity: 50%;
 }
 
@@ -175,14 +175,37 @@ button, i {
 
 .start-button {
   width: 0px;
-  height: 56px;
+  height: 48px;
   position: relative;
+}
+
+.start-normal {
+  opacity: 1;
 }
 
 .start-button>* {
   position: absolute;
 }
 
-.start-normal {
-  opacity: 1;
+.left {
+  position: absolute;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.right {
+  position: absolute;
+  right: 0;
+}
+
+.timecontainer {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 2px;
+  margin-right: 8px;
+  line-height: 18px;
 }

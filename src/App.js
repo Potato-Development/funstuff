@@ -4,6 +4,7 @@ import "./style.css";
 import { Rnd } from "react-rnd";
 import useSound from 'use-sound';
 import clicksound from './assets/sounds/click.mp3';
+import Clock from 'react-live-clock';
 
 function App() {
   const [selectedIcon, setSelectedIcon] = useState(null);
@@ -309,14 +310,18 @@ function App() {
       })}
       </div>
       <div className="taskbarcontainer">
-        <div className="taskbar bg"></div>
+        <div class="taskbar bg"></div>
         <div className="taskbar fg">
-          <div className="taskbar-left">
+          <div className="left">
             <div className="start start-button">
               <img className="start start-normal" src="icons/start.png" alt="Start"/>
             </div>
           </div>
-          <div className="taskbar-right">
+          <div className="right">
+            <div className="timecontainer">
+              <Clock format={'HH:mm A'} ticking={true}/>
+              <Clock format={'DD/MM/YYYY'} ticking={true}/>
+            </div>
           </div>
         </div>
       </div>
