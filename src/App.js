@@ -311,8 +311,12 @@ function App() {
       <div className="taskbarcontainer">
         <div className="taskbar bg"></div>
         <div className="taskbar fg">
-          <div className="start start-button">
-            <img className="start start-normal" src="icons/start.png" alt="Start"/>
+          <div className="taskbar-left">
+            <div className="start start-button">
+              <img className="start start-normal" src="icons/start.png" alt="Start"/>
+            </div>
+          </div>
+          <div className="taskbar-right">
           </div>
         </div>
       </div>
@@ -522,7 +526,6 @@ const ComputerWindow = ({ onClose }) => {
         </div>
         <div className="window-body has-space">
           <div className="placeholder">
-            <p>Computer</p>
             <p>This PC</p>
             <p>Work in Progress...</p>
           </div>
