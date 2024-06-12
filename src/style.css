@@ -223,3 +223,14 @@ p, h1, h2, h3, h4, h5, h6, span, a, b, i, u, strong, em, small, big {
 time {
   user-select: none;
 }
+
+.tray > img {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+}
+
+.tray {
+  display: flex;
+  align-items: center;
+}
