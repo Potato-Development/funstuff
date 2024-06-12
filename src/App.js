@@ -346,9 +346,9 @@ function App() {
           </div>
           <div className="right">
             <div className="tray">
-              <img src="tray/action.png" alt="Action"></img>
-              <img src="tray/network.png" alt="Network"></img>
-              <img src="tray/audio1.png" alt="Audio"></img>
+              <img className="trayicon action" src="tray/action.png" alt="Action"></img>
+              <img className="trayicon network" src="tray/network.png" alt="Network"></img>
+              <img className="trayicon audio" src="tray/audio1.png" alt="Audio"></img>
               <div className="timecontainer">
                 <Clock format={'HH:mm A'} ticking={true}/>
                 <Clock format={'DD/MM/YYYY'} ticking={true}/>

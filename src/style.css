@@ -141,7 +141,7 @@ body, div {
   cursor: url('./assets/cursors/move.cur'), move;
 }
 
-button, i[id], i span, .start {
+button, i[id], i span, .start, .audio {
   cursor: url('./assets/cursors/pointer.cur'), pointer;
 }
 
@@ -224,7 +224,7 @@ time {
   user-select: none;
 }
 
-.tray > img {
+.trayicon {
   width: 16px;
   height: 16px;
   margin-right: 8px;
