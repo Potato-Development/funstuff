@@ -133,7 +133,7 @@ i#notepad {
   height: 150px;
 }
 
-body {
+body, div {
   cursor: url('./assets/cursors/default.cur'), default;
 }
 
@@ -141,12 +141,8 @@ body {
   cursor: url('./assets/cursors/move.cur'), move;
 }
 
-button, i[id], i span {
+button, i[id], i span, .start {
   cursor: url('./assets/cursors/pointer.cur'), pointer;
-}
-
-.start {
-  cursor: url('./assets/cursors/notallowed.cur'), not-allowed;
 }
 
 p, h1, h2, h3, h4, h5, h6, span, a, b, i, u, strong, em, small, big {
