@@ -18,6 +18,7 @@ function App() {
   const iconRef7 = useRef(null);
   const iconRef8 = useRef(null);
   const iconRef9 = useRef(null);
+  const iconRef10 = useRef(null);
   const [clickVolume, setClickVolume] = useState(0);
   const [playClick] = useSound(clicksound, { volume: clickVolume });
   const [openWindows, setOpenWindows] = useState({});
@@ -54,12 +55,14 @@ function App() {
         if (!openWindows["computer"]) {
           addComputerWindow();
         }
+      } else if (id === "notepad") {
+        if (!openWindows["notepad"]) {
+          addNotepadWindow();
+        }
       } else if (id === "horror") {
         handleHorrorStart();
       } else if (id === "update") {
         handleUpdateStart();
-      } else if (id === "start") {
-        handleStartClick();
       }
     } else {
       setSelectedIcon(id);
@@ -108,6 +111,13 @@ function App() {
     console.log("openWindows after adding computer window:", openWindows);
   };
 
+  const addNotepadWindow = () => {
+    const newWindow = <NotepadWindow key={windows.length} onClose={() => closeWindow("notepad")} />;
+    setWindows([...windows, newWindow]);
+    setOpenWindows({ ...openWindows, notepad: true });
+    console.log("openWindows after adding notepad window:", openWindows);
+  };
+
   const handleRecycleBin = () => {
     alert("Recycle Bin clicked");
   };
@@ -118,10 +128,6 @@ function App() {
 
   const handleUpdateStart = () => {
     alert("Development takes time...");
-  };
-
-  const handleStartClick = () => {
-    alert("Coming soon...");
   };
 
   const closeWindow = (type) => {
@@ -141,6 +147,12 @@ function App() {
         return false;
       } else if (type === "internet" && window.type === "internet") {
         updatedOpenWindows.internet = false;
+        return false;
+      } else if (type === "computer" && window.type === "computer") {
+        updatedOpenWindows.computer = false;
+        return false;
+      } else if (type === "notepad" && window.type === "notepad") {
+        updatedOpenWindows.notepad = false;
         return false;
       }
       return true;
@@ -169,7 +181,9 @@ function App() {
         iconRef8.current &&
         !iconRef8.current.contains(event.target) &&
         iconRef9.current &&
-        !iconRef9.current.contains(event.target)
+        !iconRef9.current.contains(event.target) &&
+        iconRef10.current &&
+        !iconRef10.current.contains(event.target)
       ) {
         setSelectedIcon(null);
       }
@@ -300,6 +314,19 @@ function App() {
           </div>
           <div className="name">
             <span>Update</span>
+          </div>
+        </Icon>
+        <Icon
+          id="notepad"
+          isSelected={selectedIcon === "notepad"}
+          onClick={() => handleClick("notepad")}
+          ref={iconRef10}
+        >
+          <div className="picture">
+            <img src="icons/notepad.png" alt="Notepad" />
+          </div>
+          <div className="name">
+            <span>Notepad</span>
           </div>
         </Icon>
       </div>
@@ -532,6 +559,34 @@ const ComputerWindow = ({ onClose }) => {
         <div className="window-body has-space">
           <div className="placeholder">
             <p>This PC</p>
+            <p>Work in Progress...</p>
+          </div>
+        </div>
+      </div>
+    </Rnd>
+  );
+};
+
+const NotepadWindow = ({ onClose }) => {
+  return (
+    <Rnd
+      default={{
+        x: 200,
+        y: 200
+      }}
+      enableResizing={false}
+      dragHandleClassName="title-bar"
+    >
+      <div className="window active">
+        <div className="title-bar">
+          <div className="title-bar-text">Chat</div>
+          <div className="title-bar-controls">
+            <button aria-label="Close" onClick={onClose}></button>
+          </div>
+        </div>
+        <div className="window-body has-space">
+          <div className="placeholder">
+            <p>Notepad Window</p>
             <p>Work in Progress...</p>
           </div>
         </div>
