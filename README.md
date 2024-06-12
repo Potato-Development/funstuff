@@ -37,9 +37,7 @@
 ## Roadmap
 
 - [ ] Taskbar with an option to hide
-- [ ] Start icon and time/date on taskbar
 - [ ] Larger sound functionality with error and success sounds
-- [ ] Custom classic cursors
 - [ ] Original Notepad app
 - [ ] Automatic fullscreen on load
 - [ ] Internet Explorer recreation with one website
