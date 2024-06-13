@@ -18,7 +18,6 @@ function App() {
   const iconRef7 = useRef(null);
   const iconRef8 = useRef(null);
   const iconRef9 = useRef(null);
-  const iconRef10 = useRef(null);
   const [clickVolume, setClickVolume] = useState(0);
   const [playClick] = useSound(clicksound, { volume: clickVolume });
   const [openWindows, setOpenWindows] = useState({});
@@ -39,10 +38,6 @@ function App() {
       } else if (id === "pet") {
         if (!openWindows["pet"]) {
           addPetWindow();
-        }
-      } else if (id === "sound") {
-        if (!openWindows["sound"]) {
-          addSoundWindow();
         }
       } else if (id === "chat") {
         if (!openWindows["chat"]) {
@@ -82,13 +77,6 @@ function App() {
     setWindows([...windows, newWindow]);
     setOpenWindows({ ...openWindows, pet: true });
     console.log("openWindows after adding pet window:", openWindows);
-  };
-
-  const addSoundWindow = () => {
-    const newWindow = <SoundWindow key={windows.length} clickVolume={clickVolume} setClickVolume={handleVolumeChange} onClose={() => closeWindow("sound")} />;
-    setWindows([...windows, newWindow]);
-    setOpenWindows({ ...openWindows, sound: true });
-    console.log("openWindows after adding sound window:", openWindows);
   };
 
   const addChatWindow = () => {
@@ -144,9 +132,6 @@ function App() {
       } else if (type === "pet" && window.type === "pet") {
         updatedOpenWindows.pet = false;
         return false;
-      } else if (type === "sound" && window.type === "sound") {
-        updatedOpenWindows.sound = false;
-        return false;
       } else if (type === "chat" && window.type === "chat") {
         updatedOpenWindows.chat = false;
         return false;
@@ -186,9 +171,7 @@ function App() {
         iconRef8.current &&
         !iconRef8.current.contains(event.target) &&
         iconRef9.current &&
-        !iconRef9.current.contains(event.target) &&
-        iconRef10.current &&
-        !iconRef10.current.contains(event.target)
+        !iconRef9.current.contains(event.target)
       ) {
         setSelectedIcon(null);
       }
@@ -231,23 +214,10 @@ function App() {
           </div>
         </Icon>
         <Icon
-          id="sound"
-          isSelected={selectedIcon === "sound"}
-          onClick={() => handleClick("sound")}
-          ref={iconRef3}
-        >
-          <div className="picture">
-            <img src="icons/sound.png" alt="Sound" />
-          </div>
-          <div className="name">
-            <span>Sound</span>
-          </div>
-        </Icon>
-        <Icon
           id="chat"
           isSelected={selectedIcon === "chat"}
           onClick={() => handleClick("chat")}
-          ref={iconRef4}
+          ref={iconRef3}
         >
           <div className="picture">
             <img src="icons/chat.png" alt="Chat" />
@@ -260,7 +230,7 @@ function App() {
           id="internet"
           isSelected={selectedIcon === "internet"}
           onClick={() => handleClick("internet")}
-          ref={iconRef5}
+          ref={iconRef4}
         >
           <div className="picture">
             <img src="icons/internet.png" alt="Internet Explorer" />
@@ -273,7 +243,7 @@ function App() {
           id="computer"
           isSelected={selectedIcon === "computer"}
           onClick={() => handleClick("computer")}
-          ref={iconRef6}
+          ref={iconRef5}
         >
           <div className="picture">
             <img src="icons/computer.png" alt="Computer" />
@@ -286,7 +256,7 @@ function App() {
           id="recyclebin"
           isSelected={selectedIcon === "recyclebin"}
           onClick={() => handleClick("recyclebin")}
-          ref={iconRef7}
+          ref={iconRef6}
         >
           <div className="picture">
             <img src="icons/recyclebin.png" alt="Recycle Bin" />
@@ -299,7 +269,7 @@ function App() {
           id="horror"
           isSelected={selectedIcon === "horror"}
           onClick={() => handleClick("horror")}
-          ref={iconRef8}
+          ref={iconRef7}
         >
           <div className="picture">
             <img src="icons/horror.png" alt="Horror" />
@@ -312,7 +282,7 @@ function App() {
           id="update"
           isSelected={selectedIcon === "update"}
           onClick={() => handleClick("update")}
-          ref={iconRef9}
+          ref={iconRef8}
         >
           <div className="picture">
             <img src="icons/update.png" alt="Update" />
@@ -325,7 +295,7 @@ function App() {
           id="notepad"
           isSelected={selectedIcon === "notepad"}
           onClick={() => handleClick("notepad")}
-          ref={iconRef10}
+          ref={iconRef9}
         >
           <div className="picture">
             <img src="icons/notepad.png" alt="Notepad" />
@@ -445,51 +415,6 @@ const PetWindow = ({ onClose }) => {
             src={`images/${selectedPet}.png`}
             alt="Virtual Pet"
           ></img>
-        </div>
-      </div>
-    </Rnd>
-  );
-};
-
-const SoundWindow = ({ onClose, clickVolume, setClickVolume }) => {
-  const [sliderValue, setSliderValue] = useState(clickVolume);
-
-  const handleSaveClick = () => {
-    setClickVolume(sliderValue);
-  };
-
-  return (
-    <Rnd
-      default={{
-        x: 200,
-        y: 200
-      }}
-      enableResizing={false}
-      dragHandleClassName="title-bar"
-    >
-      <div className="window active">
-        <div className="title-bar">
-          <div className="title-bar-text">Sound</div>
-          <div className="title-bar-controls">
-            <button aria-label="Close" onClick={onClose}></button>
-          </div>
-        </div>
-        <div className="window-body has-space">
-          <label>Volume</label>
-          <input
-            type="range"
-            min="0"
-            max="1"
-            step={0.1}
-            value={sliderValue}
-            onChange={(event) => setSliderValue(event.target.value)}
-          />
-          {sliderValue === 0 ? (
-            <p>Muted</p>
-          ) : (
-            <p>Value: {sliderValue * 10}</p>
-          )}
-          <button onClick={handleSaveClick}>Save</button>
         </div>
       </div>
     </Rnd>
