@@ -22,6 +22,7 @@ function App() {
   const [clickVolume, setClickVolume] = useState(0);
   const [playClick] = useSound(clicksound, { volume: clickVolume });
   const [openWindows, setOpenWindows] = useState({});
+  const [audioPanelOpen, setAudioPanelOpen] = useState(false);
 
   const handleVolumeChange = (volume) => {
     setClickVolume(volume);
@@ -128,6 +129,10 @@ function App() {
 
   const handleUpdateStart = () => {
     alert("Development takes time...");
+  };
+
+  const handleAudioPanel = () => {
+    setAudioPanelOpen(!audioPanelOpen);
   };
 
   const closeWindow = (type) => {
@@ -348,7 +353,7 @@ function App() {
             <div className="tray">
               <img className="trayicon action" src="tray/action.png" alt="Action"></img>
               <img className="trayicon network" src="tray/network.png" alt="Network"></img>
-              <img className="trayicon audio" src="tray/audio1.png" alt="Audio"></img>
+              <img className="trayicon audio" src="tray/audio1.png" alt="Audio" onClick={handleAudioPanel}></img>
               <div className="timecontainer">
                 <Clock format={'HH:mm A'} ticking={true}/>
                 <Clock format={'DD/MM/YYYY'} ticking={true}/>
@@ -357,6 +362,9 @@ function App() {
           </div>
         </div>
       </div>
+      {audioPanelOpen && (
+        <AudioPanel clickVolume={clickVolume} setClickVolume={handleVolumeChange} />
+      )}
     </div>
   );
 }
@@ -467,21 +475,21 @@ const SoundWindow = ({ onClose, clickVolume, setClickVolume }) => {
           </div>
         </div>
         <div className="window-body has-space">
-            <label>Volume</label>
-            <input
-              type="range"
-              min="0"
-              max="1"
-              step={0.1}
-              value={sliderValue}
-              onChange={(event) => setSliderValue(event.target.value)}
-            />
-            {sliderValue === 0 ? (
-              <p>Muted</p>
-            ) : (
-              <p>Value: {sliderValue * 10}</p>
-            )}
-            <button onClick={handleSaveClick}>Save</button>
+          <label>Volume</label>
+          <input
+            type="range"
+            min="0"
+            max="1"
+            step={0.1}
+            value={sliderValue}
+            onChange={(event) => setSliderValue(event.target.value)}
+          />
+          {sliderValue === 0 ? (
+            <p>Muted</p>
+          ) : (
+            <p>Value: {sliderValue * 10}</p>
+          )}
+          <button onClick={handleSaveClick}>Save</button>
         </div>
       </div>
     </Rnd>
@@ -597,6 +605,42 @@ const NotepadWindow = ({ onClose }) => {
         </div>
       </div>
     </Rnd>
+  );
+};
+
+const AudioPanel = ({ clickVolume, setClickVolume }) => {
+  const [sliderValue, setSliderValue] = useState(clickVolume);
+
+  const handleSaveClick = () => {
+    setClickVolume(sliderValue);
+  };
+
+  return (
+    <div className="panelcontainer">
+      <div className="window active">
+        <div className="title-bar">
+          <div className="title-bar-text">Audio Panel</div>
+        </div>
+        <div className="window-body has-space" style={{width: 250}}>
+          <label>Volume</label>
+          <input
+            type="range"
+            min="0"
+            max="1"
+            step={0.1}
+            value={sliderValue}
+            onChange={(event) => setSliderValue(event.target.value)}
+            style={{width: '95%'}}
+          />
+          {sliderValue === 0 ? (
+            <p>Muted</p>
+          ) : (
+            <p>Value: {sliderValue * 10}</p>
+          )}
+          <button onClick={handleSaveClick}>Save</button>
+        </div>
+      </div>
+    </div>
   );
 };
 

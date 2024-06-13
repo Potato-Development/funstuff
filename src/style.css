@@ -234,3 +234,9 @@ time {
   display: flex;
   align-items: center;
 }
+
+.panelcontainer {
+  position: absolute;
+  right: 5px;
+  bottom: 45px
+}
