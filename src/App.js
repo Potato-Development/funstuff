@@ -27,6 +27,13 @@ function App() {
     setClickVolume(volume);
   };
 
+  const getVolumeIcon = () => {
+    if (clickVolume >= 0 && clickVolume < 0.1) return "tray/audio1.png";
+    else if (clickVolume <= 0.3) return "tray/audio4.png";
+    else if (clickVolume <= 0.6) return "tray/audio3.png";
+    else return "tray/audio2.png";
+  };
+
   const handleClick = (id) => {
     if (selectedIcon === id) {
       if (id === "about") {
@@ -323,7 +330,7 @@ function App() {
             <div className="tray">
               <img className="trayicon action" src="tray/action.png" alt="Action"></img>
               <img className="trayicon network" src="tray/network.png" alt="Network"></img>
-              <img className="trayicon audio" src="tray/audio1.png" alt="Audio" onClick={handleAudioPanel}></img>
+              <img className="trayicon audio" src={getVolumeIcon()} alt="Audio" onClick={handleAudioPanel}></img>
               <div className="timecontainer">
                 <Clock format={'HH:mm A'} ticking={true}/>
                 <Clock format={'DD/MM/YYYY'} ticking={true}/>
