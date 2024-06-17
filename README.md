@@ -36,10 +36,10 @@
 
 ## Roadmap
 
-- [ ] Taskbar with an option to hide
+- [ ] Toggle to hide the taskbar
 - [ ] Larger sound functionality with error and success sounds
 - [ ] Original Notepad app
-- [ ] Automatic fullscreen on load
+- [ ] Fullscreen mode
 - [ ] Internet Explorer recreation with one website
 - [ ] Windows Live Messenger with friends and chat tab
 - [ ] Complex horror experience with many features
