@@ -141,7 +141,7 @@ body, div {
   cursor: url('./assets/cursors/move.cur'), move;
 }
 
-button, i[id], i span, .start, .audio {
+button, i[id], i span, .start, .audio, .action {
   cursor: url('./assets/cursors/pointer.cur'), pointer;
 }
 
@@ -239,4 +239,28 @@ time {
   position: absolute;
   right: 5px;
   bottom: 45px
+}
+
+.actionballoon {
+  position: absolute;
+  bottom: 60px;
+  right: 125px;
+  opacity: 1;
+	animation-name: fadeIn;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 1s;
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+[role=tooltip] {
+  padding: 1em;
 }

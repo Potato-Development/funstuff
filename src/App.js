@@ -22,6 +22,8 @@ function App() {
   const [playClick] = useSound(clicksound, { volume: clickVolume });
   const [openWindows, setOpenWindows] = useState({});
   const [audioPanelOpen, setAudioPanelOpen] = useState(false);
+  const [actionRead, setActionRead] = useState(false);
+  const [actionOpen, setActionOpen] = useState(false);
 
   const handleVolumeChange = (volume) => {
     setClickVolume(volume);
@@ -32,6 +34,11 @@ function App() {
     else if (clickVolume <= 0.3) return "tray/audio4.png";
     else if (clickVolume <= 0.6) return "tray/audio3.png";
     else return "tray/audio2.png";
+  };
+
+  const getActionIcon = () => {
+    if (!actionRead) return "tray/action2.png";
+    else return "tray/action1.png";
   };
 
   const handleClick = (id) => {
@@ -128,6 +135,11 @@ function App() {
 
   const handleAudioPanel = () => {
     setAudioPanelOpen(!audioPanelOpen);
+  };
+
+  const handleAction = () => {
+    setActionOpen(!actionOpen);
+    setActionRead(true);
   };
 
   const closeWindow = (type) => {
@@ -328,7 +340,7 @@ function App() {
           </div>
           <div className="right">
             <div className="tray">
-              <img className="trayicon action" src="tray/action.png" alt="Action"></img>
+              <img className="trayicon action" src={getActionIcon()} alt="Action" onClick={handleAction}></img>
               <img className="trayicon network" src="tray/network.png" alt="Network"></img>
               <img className="trayicon audio" src={getVolumeIcon()} alt="Audio" onClick={handleAudioPanel}></img>
               <div className="timecontainer">
@@ -341,6 +353,9 @@ function App() {
       </div>
       {audioPanelOpen && (
         <AudioPanel clickVolume={clickVolume} setClickVolume={handleVolumeChange} />
+      )}
+      {actionOpen && (
+        <Action/>
       )}
     </div>
   );
@@ -575,5 +590,9 @@ const AudioPanel = ({ clickVolume, setClickVolume }) => {
     </div>
   );
 };
+
+const Action = () => {
+  return(<div role="tooltip" class="is-top is-left actionballoon">This balloon is positioned in the bottom right corner.</div>)
+}
 
 export default App;
