@@ -60,6 +60,7 @@ Project Link - [https://github.com/Potato-Development/funstuff](https://github.c
 
 ## Acknowledgments
 
+* Massive thank you to [khang-nd](https://github.com/khang-nd) for creating [7.css](https://github.com/khang-nd/7.css) which I used greatly for this project.
 * [salmanarif](https://www.deviantart.com/salmanarif) and [Animelove_1105](http://www.rw-designer.com/user/105799) for the original icon files.
 * [The64thGamer](https://www.spriters-resource.com/submitter/The64thGamer/) and [Siul](https://www.spriters-resource.com/submitter/Siul/) for the sprite files.
 * All the people of [this thread](https://wink.messengergeek.com/t/resource-hacking-wlm-2009) for the Windows Live Messenger files.

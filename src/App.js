@@ -592,7 +592,9 @@ const AudioPanel = ({ clickVolume, setClickVolume }) => {
 };
 
 const Action = () => {
-  return(<div role="tooltip" class="is-top is-left actionballoon">This balloon is positioned in the bottom right corner.</div>)
+  return(
+  <div role="tooltip" class="is-top is-left actionballoon">This balloon is positioned in the bottom right corner.</div>
+)
 }
 
 export default App;
