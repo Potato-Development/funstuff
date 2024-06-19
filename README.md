@@ -43,12 +43,11 @@
 - [ ] Internet Explorer recreation with one website
 - [ ] Windows Live Messenger with friends and chat tab
 - [ ] Complex horror experience with many features
-- [ ] Notifications either automatic or manually triggered
 - [ ] Fake Windows update icon (credit to [edamame-maru](https://github.com/edamame-maru))
 
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+Distributed under the Unlicense License. See `LICENSE` for more information.
 
 ## Contact
 
