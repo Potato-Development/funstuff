@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from 'react';
+import './style.css'
 import "7.css/dist/7.css";
-import "./style.css";
 import { Rnd } from "react-rnd";
 import useSound from 'use-sound';
 import clicksound from './assets/sounds/click.mp3';
@@ -331,7 +331,7 @@ function App() {
       })}
       </div>
       <div className="taskbarcontainer">
-        <div class="taskbar bg"></div>
+        <div className="taskbar bg"></div>
         <div className="taskbar fg">
           <div className="left">
             <div className="start start-button">
@@ -358,7 +358,7 @@ function App() {
         <Action/>
       )}
     </div>
-  );
+  )
 }
 
 const Icon = React.forwardRef(({ id, isSelected, onClick, children }, ref) => {
@@ -593,8 +593,8 @@ const AudioPanel = ({ clickVolume, setClickVolume }) => {
 
 const Action = () => {
   return(
-  <div role="tooltip" class="is-top is-left actionballoon">This balloon is positioned in the bottom right corner.</div>
+  <div role="tooltip" className="is-top is-left actionballoon">This balloon is positioned in the bottom right corner.</div>
 )
 }
 
-export default App;
+export default App

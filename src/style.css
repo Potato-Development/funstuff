@@ -1,266 +1,267 @@
 .App {
-  display: block;
-  position: absolute;
-  z-index: 100;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background-image: url(../public/images/wallpaper.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-}
-
-i {
-  padding: 5px;
-  border-radius: 4px;
-  font-style: normal;
-  font-size: 12px;
-}
-
-i > .picture {
-  width: 48px;
-  height: 48px;
-  margin: 0 auto;
-  user-select: none;
-}
-i > .picture > img {
-  width: 100%;
-  height: 100%;
-}
-i > .name {
-  margin-top: 3px;
-  width: 72px;
-  color: rgb(247, 247, 247);
-  text-align: center;
-  text-shadow: 2px 2px 3px #000;
-  user-select: none;
-}
-
-i:hover {
-  box-shadow: 0 0 0 2px rgba(200, 224, 255, 0.71) inset;
-  background-color: rgba(197, 222, 255, 0.3);
-}
-
-i.focus,
-i.selected {
-  box-shadow: 0 0 0 2px rgba(200, 224, 255, 0.71) inset;
-  background-color: rgba(197, 222, 255, 0.77);
-}
-
-i#about {
-  position: absolute;
-  top: 260px;
-  left: 100px;
-}
-
-i#pet {
-  position: absolute;
-  top: 100px;
-  left: 100px;
-}
-
-i#sound {
-  position: absolute;
-  top: 100px;
-  left: 100px;
-}
-
-i#chat {
-  position: absolute;
-  top: 180px;
-  left: 20px;
-}
-
-i#internet {
-  position: absolute;
-  top: 180px;
-  left: 100px;
-}
-
-i#computer {
-  position: absolute;
-  top: 20px;
-  left: 100px;
-}
-
-i#recyclebin {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-}
-
-i#horror {
-  position: absolute;
-  top: 260px;
-  left: 20px;
-}
-
-i#update {
-  position: absolute;
-  top: 340px;
-  left: 20px;
-}
-
-i#notepad {
-  position: absolute;
-  top: 100px;
-  left: 20px;
-}
-
-.iconcontainer {
-  width: fit-content;
-  height: fit-content;
-}
-
-.title-bar-text {
-  user-select: none;
-}
-
-.placeholder {
-  width: 300px;
-  height: 100px;
-}
-
-.petwindow {
-  display: table-caption;
-}
-
-.petimg {
-  width: 150px;
-  height: 150px;
-}
-
-body, div {
-  cursor: url('./assets/cursors/default.cur'), default;
-}
-
-.title-bar, .title-bar div {
-  cursor: url('./assets/cursors/move.cur'), move;
-}
-
-button, i[id], i span, .start, .audio, .action {
-  cursor: url('./assets/cursors/pointer.cur'), pointer;
-}
-
-p, h1, h2, h3, h4, h5, h6, span, a, b, i, u, strong, em, small, big {
-  cursor: url('./assets/cursors/select.cur'), text;
-}
-
-.taskbarcontainer {
-  --accent: #434444;
-  --aero-white: #ffffff7a;
-  --aero-black: #000000bd;
-  --aero-color: rgba( 116, 184, 252, calc(.7 * 50%) );
-  --aero-accent: color-mix(in srgb, #000, color-mix(in srgb, var(--aero-color) var(--saturation), transparent) var(--brightness));
-  --saturation: 50%;
-  --brightness: 60%;
-  --intensity: 50%;
-}
-
-.taskbar {
-  z-index: 999999999999999999;
-  position: absolute;
-  bottom: 0;
-  height: 40px;
-  width: 100vw;
-}
-
-.fg {
-  background: url(./assets/images/glass.png) center center / cover no-repeat fixed;
-  outline: solid thin var(--aero-black);
-  box-shadow: inset 0 1px 0 0 var(--aero-white);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.bg {
-  background-color: var(--aero-accent);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
-}
-
-.start-button {
-  width: 0px;
-  height: 48px;
-  position: relative;
-}
-
-.start-normal {
-  opacity: 1;
-}
-
-.start-button>* {
-  position: absolute;
-}
-
-.left {
-  position: absolute;
-  left: 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.right {
-  position: absolute;
-  right: 0;
-}
-
-.timecontainer {
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-left: 2px;
-  margin-right: 8px;
-  line-height: 18px;
-}
-
-time {
-  user-select: none;
-}
-
-.trayicon {
-  width: 16px;
-  height: 16px;
-  margin-right: 8px;
-}
-
-.tray {
-  display: flex;
-  align-items: center;
-}
-
-.panelcontainer {
-  position: absolute;
-  right: 5px;
-  bottom: 45px
-}
-
-.actionballoon {
-  position: absolute;
-  bottom: 60px;
-  right: 125px;
-  opacity: 1;
-	animation-name: fadeIn;
-	animation-iteration-count: 1;
-	animation-timing-function: ease-in;
-	animation-duration: 0.5s;
-}
-
-@keyframes fadeIn {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
-}
-
-[role=tooltip] {
-  padding: 1em;
-}
+    display: block;
+    position: absolute;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-image: url(../images/wallpaper.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+  }
+  
+  i {
+    padding: 5px;
+    border-radius: 4px;
+    font-style: normal;
+    font-size: 12px;
+  }
+  
+  i > .picture {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto;
+    user-select: none;
+  }
+  i > .picture > img {
+    width: 100%;
+    height: 100%;
+  }
+  i > .name {
+    margin-top: 3px;
+    width: 72px;
+    color: rgb(247, 247, 247);
+    text-align: center;
+    text-shadow: 2px 2px 3px #000;
+    user-select: none;
+  }
+  
+  i:hover {
+    box-shadow: 0 0 0 2px rgba(200, 224, 255, 0.71) inset;
+    background-color: rgba(197, 222, 255, 0.3);
+  }
+  
+  i.focus,
+  i.selected {
+    box-shadow: 0 0 0 2px rgba(200, 224, 255, 0.71) inset;
+    background-color: rgba(197, 222, 255, 0.77);
+  }
+  
+  i#about {
+    position: absolute;
+    top: 260px;
+    left: 100px;
+  }
+  
+  i#pet {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+  }
+  
+  i#sound {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+  }
+  
+  i#chat {
+    position: absolute;
+    top: 180px;
+    left: 20px;
+  }
+  
+  i#internet {
+    position: absolute;
+    top: 180px;
+    left: 100px;
+  }
+  
+  i#computer {
+    position: absolute;
+    top: 20px;
+    left: 100px;
+  }
+  
+  i#recyclebin {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+  
+  i#horror {
+    position: absolute;
+    top: 260px;
+    left: 20px;
+  }
+  
+  i#update {
+    position: absolute;
+    top: 340px;
+    left: 20px;
+  }
+  
+  i#notepad {
+    position: absolute;
+    top: 100px;
+    left: 20px;
+  }
+  
+  .iconcontainer {
+    width: fit-content;
+    height: fit-content;
+  }
+  
+  .title-bar-text {
+    user-select: none;
+  }
+  
+  .placeholder {
+    width: 300px;
+    height: 100px;
+  }
+  
+  .petwindow {
+    display: table-caption;
+  }
+  
+  .petimg {
+    width: 150px;
+    height: 150px;
+  }
+  
+  body, div {
+    cursor: url('./assets/cursors/default.cur'), default;
+  }
+  
+  .title-bar, .title-bar div {
+    cursor: url('./assets/cursors/move.cur'), move;
+  }
+  
+  button, i[id], i span, .start, .audio, .action, .picture, .name {
+    cursor: url('./assets/cursors/pointer.cur'), pointer;
+  }
+  
+  p, h1, h2, h3, h4, h5, h6, span, a, b, i, u, strong, em, small, big {
+    cursor: url('./assets/cursors/select.cur'), text;
+  }
+  
+  .taskbarcontainer {
+    --accent: #434444;
+    --aero-white: #ffffff7a;
+    --aero-black: #000000bd;
+    --aero-color: rgba( 116, 184, 252, calc(.7 * 50%) );
+    --aero-accent: color-mix(in srgb, #000, color-mix(in srgb, var(--aero-color) var(--saturation), transparent) var(--brightness));
+    --saturation: 50%;
+    --brightness: 60%;
+    --intensity: 50%;
+  }
+  
+  .taskbar {
+    z-index: 999999999999999999;
+    position: absolute;
+    bottom: 0;
+    height: 40px;
+    width: 100vw;
+  }
+  
+  .fg {
+    background: url(./assets/images/glass.png) center center / cover no-repeat fixed;
+    outline: solid thin var(--aero-black);
+    box-shadow: inset 0 1px 0 0 var(--aero-white);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .bg {
+    background-color: var(--aero-accent);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+  
+  .start-button {
+    width: 0px;
+    height: 48px;
+    position: relative;
+  }
+  
+  .start-normal {
+    opacity: 1;
+  }
+  
+  .start-button>* {
+    position: absolute;
+  }
+  
+  .left {
+    position: absolute;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .right {
+    position: absolute;
+    right: 0;
+  }
+  
+  .timecontainer {
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 2px;
+    margin-right: 8px;
+    line-height: 18px;
+  }
+  
+  time {
+    user-select: none;
+  }
+  
+  .trayicon {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+  }
+  
+  .tray {
+    display: flex;
+    align-items: center;
+  }
+  
+  .panelcontainer {
+    position: absolute;
+    right: 5px;
+    bottom: 45px
+  }
+  
+  .actionballoon {
+    position: absolute;
+    bottom: 60px;
+    right: 125px;
+    opacity: 1;
+      animation-name: fadeIn;
+      animation-iteration-count: 1;
+      animation-timing-function: ease-in;
+      animation-duration: 0.3s;
+  }
+  
+  @keyframes fadeIn {
+      0% {
+          opacity: 0;
+      }
+      100% {
+          opacity: 1;
+      }
+  }
+  
+  [role=tooltip] {
+    padding: 1em !important;
+    position: absolute !important;
+  }
