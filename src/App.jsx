@@ -593,7 +593,7 @@ const AudioPanel = ({ clickVolume, setClickVolume }) => {
 
 const Action = () => {
   return(
-  <div role="tooltip" className="is-top is-left actionballoon">This balloon is positioned in the bottom right corner.</div>
+  <div role="tooltip" className="is-top is-left actionballoon">This is an example of a desktop notification.</div>
 )
 }
 
