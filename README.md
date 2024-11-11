@@ -47,7 +47,7 @@
 
 ## License
 
-Distributed under the Unlicense License. See `LICENSE` for more information.
+Distributed under the GNU General Public License. See `LICENSE` for more information.
 
 ## Contact
 
