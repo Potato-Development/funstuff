@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
-import './style.css'
+import React, { useState, useEffect, useRef } from "react";
+import "./style.css"
 import "7.css/dist/7.css";
 import { Rnd } from "react-rnd";
-import useSound from 'use-sound';
-import clicksound from './assets/sounds/click.mp3';
-import Clock from 'react-live-clock';
+import useSound from "use-sound";
+import clicksound from "./assets/sounds/click.mp3";
+import Clock from "react-live-clock";
 
 function App() {
   const [selectedIcon, setSelectedIcon] = useState(null);
@@ -18,12 +18,14 @@ function App() {
   const iconRef7 = useRef(null);
   const iconRef8 = useRef(null);
   const iconRef9 = useRef(null);
+  const iconRef10 = useRef(null);
   const [clickVolume, setClickVolume] = useState(0);
   const [playClick] = useSound(clicksound, { volume: clickVolume });
   const [openWindows, setOpenWindows] = useState({});
   const [audioPanelOpen, setAudioPanelOpen] = useState(false);
   const [actionRead, setActionRead] = useState(false);
   const [actionOpen, setActionOpen] = useState(false);
+  const [showTaskbar, setShowTaskbar] = useState(true);
 
   const handleVolumeChange = (volume) => {
     setClickVolume(volume);
@@ -73,7 +75,10 @@ function App() {
         handleHorrorStart();
       } else if (id === "update") {
         handleUpdateStart();
+      } else if (id === "taskbar") {
+        handleToggleTaskbar();
       }
+      setSelectedIcon(null)
     } else {
       setSelectedIcon(id);
     }
@@ -142,6 +147,16 @@ function App() {
     setActionRead(true);
   };
 
+  const handleToggleTaskbar = () => {
+    if (showTaskbar) {
+      setShowTaskbar(false)
+      Array.from(document.getElementsByClassName("taskbar")).forEach((element) => {element.style.visibility = "hidden"});
+    } else {
+      setShowTaskbar(true)
+      Array.from(document.getElementsByClassName("taskbar")).forEach((element) => {element.style.visibility = "visible"});
+    }
+  };
+
   const closeWindow = (type) => {
     const updatedOpenWindows = { ...openWindows };
     const updatedWindows = windows.filter((window) => {
@@ -190,7 +205,9 @@ function App() {
         iconRef8.current &&
         !iconRef8.current.contains(event.target) &&
         iconRef9.current &&
-        !iconRef9.current.contains(event.target)
+        !iconRef9.current.contains(event.target) &&
+        iconRef10.current &&
+        !iconRef10.current.contains(event.target)
       ) {
         setSelectedIcon(null);
       }
@@ -323,6 +340,19 @@ function App() {
             <span>Notepad</span>
           </div>
         </Icon>
+        <Icon
+          id="taskbar"
+          isSelected={selectedIcon === "taskbar"}
+          onClick={() => handleClick("taskbar")}
+          ref={iconRef10}
+        >
+          <div className="picture">
+            <img src="icons/taskbar.png" alt="Taskbar" />
+          </div>
+          <div className="name">
+            <span>Taskbar</span>
+          </div>
+        </Icon>
       </div>
       <div className="windowcontainer">
       {windows.map((window, index) => {
@@ -344,8 +374,8 @@ function App() {
               <img className="trayicon network" src="tray/network.png" alt="Network"></img>
               <img className="trayicon audio" src={getVolumeIcon()} alt="Audio" onClick={handleAudioPanel}></img>
               <div className="timecontainer">
-                <Clock format={'HH:mm A'} ticking={true}/>
-                <Clock format={'DD/MM/YYYY'} ticking={true}/>
+                <Clock format={"HH:mm A"} ticking={true}/>
+                <Clock format={"DD/MM/YYYY"} ticking={true}/>
               </div>
             </div>
           </div>
@@ -577,7 +607,7 @@ const AudioPanel = ({ clickVolume, setClickVolume }) => {
             step={0.1}
             value={sliderValue}
             onChange={(event) => setSliderValue(event.target.value)}
-            style={{width: '95%'}}
+            style={{width: "95%"}}
           />
           {sliderValue === 0 ? (
             <p>Muted</p>

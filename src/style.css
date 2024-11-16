@@ -109,6 +109,12 @@
     top: 100px;
     left: 20px;
   }
+
+  i#taskbar {
+    position: absolute;
+    top: 340px;
+    left: 100px;
+  }
   
   .iconcontainer {
     width: fit-content;
