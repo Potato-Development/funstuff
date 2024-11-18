@@ -115,6 +115,12 @@
     top: 340px;
     left: 100px;
   }
+
+  i#commandprompt {
+    position: absolute;
+    top: 420px;
+    left: 20px;
+  }
   
   .iconcontainer {
     width: fit-content;
@@ -128,6 +134,11 @@
   .placeholder {
     width: 300px;
     height: 100px;
+  }
+
+  .placeholder > p{
+    margin-left: 12px;
+    margin-right: 12px;
   }
   
   .petwindow {
@@ -270,4 +281,13 @@
   [role=tooltip] {
     padding: 1em !important;
     position: absolute !important;
+  }
+
+  .commandprompt {
+    background: black !important;
+    color: white
+  }
+
+  .commandprompt > p {
+    margin: 3px;
   }

@@ -19,6 +19,7 @@ function App() {
   const iconRef8 = useRef(null);
   const iconRef9 = useRef(null);
   const iconRef10 = useRef(null);
+  const iconRef11 = useRef(null);
   const [clickVolume, setClickVolume] = useState(0);
   const [playClick] = useSound(clicksound, { volume: clickVolume });
   const [openWindows, setOpenWindows] = useState({});
@@ -70,6 +71,10 @@ function App() {
       } else if (id === "notepad") {
         if (!openWindows["notepad"]) {
           addNotepadWindow();
+        }
+      } else if (id === "commandprompt") {
+        if (!openWindows["commandprompt"]) {
+          addCommandPromptWindow();
         }
       } else if (id === "horror") {
         handleHorrorStart();
@@ -126,6 +131,13 @@ function App() {
     console.log("openWindows after adding notepad window:", openWindows);
   };
 
+  const addCommandPromptWindow = () => {
+    const newWindow = <CommandPromptWindow key={windows.length} onClose={() => closeWindow("commandprompt")} />;
+    setWindows([...windows, newWindow]);
+    setOpenWindows({ ...openWindows, commandprompt: true });
+    console.log("openWindows after adding command prompt window:", openWindows);
+  };
+
   const handleRecycleBin = () => {
     alert("Recycle Bin clicked");
   };
@@ -178,6 +190,9 @@ function App() {
       } else if (type === "notepad" && window.type === "notepad") {
         updatedOpenWindows.notepad = false;
         return false;
+      } else if (type === "commandprompt" && window.type === "commandprompt") {
+        updatedOpenWindows.commandprompt = false;
+        return false;
       }
       return true;
     });
@@ -207,7 +222,9 @@ function App() {
         iconRef9.current &&
         !iconRef9.current.contains(event.target) &&
         iconRef10.current &&
-        !iconRef10.current.contains(event.target)
+        !iconRef10.current.contains(event.target)&&
+        iconRef11.current &&
+        !iconRef11.current.contains(event.target)
       ) {
         setSelectedIcon(null);
       }
@@ -351,6 +368,19 @@ function App() {
           </div>
           <div className="name">
             <span>Taskbar</span>
+          </div>
+        </Icon>
+        <Icon
+          id="commandprompt"
+          isSelected={selectedIcon === "commandprompt"}
+          onClick={() => handleClick("commandprompt")}
+          ref={iconRef11}
+        >
+          <div className="picture">
+            <img src="icons/cmd.png" alt="Taskbar" />
+          </div>
+          <div className="name">
+            <span>Command Prompt</span>
           </div>
         </Icon>
       </div>
@@ -569,7 +599,7 @@ const NotepadWindow = ({ onClose }) => {
     >
       <div className="window active">
         <div className="title-bar">
-          <div className="title-bar-text">Chat</div>
+          <div className="title-bar-text">Notepad</div>
           <div className="title-bar-controls">
             <button aria-label="Close" onClick={onClose}></button>
           </div>
@@ -577,6 +607,34 @@ const NotepadWindow = ({ onClose }) => {
         <div className="window-body has-space">
           <div className="placeholder">
             <p>Notepad Window</p>
+            <p>Work in Progress...</p>
+          </div>
+        </div>
+      </div>
+    </Rnd>
+  );
+};
+
+const CommandPromptWindow = ({ onClose }) => {
+  return (
+    <Rnd
+      default={{
+        x: 200,
+        y: 200
+      }}
+      enableResizing={false}
+      dragHandleClassName="title-bar"
+    >
+      <div className="window active">
+        <div className="title-bar">
+          <div className="title-bar-text">Command Prompt</div>
+          <div className="title-bar-controls">
+            <button aria-label="Close" onClick={onClose}></button>
+          </div>
+        </div>
+        <div className="window-body has-space commandprompt">
+          <div className="placeholder commandprompt">
+            <p>Command Prompt Window</p>
             <p>Work in Progress...</p>
           </div>
         </div>
