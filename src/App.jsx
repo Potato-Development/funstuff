@@ -627,9 +627,11 @@ const CommandPromptWindow = ({ onClose }) => {
     if (event.key === 'Enter') {
       const formattedInput = commandInput.toUpperCase()
       if (formattedInput.trim() === 'HELP') {
-        setCommandOutput(`For more information on a specific command, type HELP command-name\nVER            Displays the Windows version.`)
+        setCommandOutput(`For more information on a specific command, type HELP command-name\nHELP           Provides Help information for Windows commands.\nVER            Displays the Windows version.`)
       } else if (formattedInput.startsWith('HELP ')) {
-          if (formattedInput.slice(5) === 'VER') {
+        if (formattedInput.slice(5) === 'HELP') {
+          setCommandOutput(`Provides help information for Windows commands.\n\nHELP [command]\n\n    command - displays help information on that command.`)
+        } else if (formattedInput.slice(5) === 'VER') {
             setCommandOutput(`Displays the Windows version.\n\nVER`)
           }
       } else if (formattedInput === 'VER') {

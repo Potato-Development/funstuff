@@ -42,8 +42,8 @@
 - [ ] Windows Live Messenger with friends and chat tab
 - [ ] Complex horror experience with many features
 - [ ] Fake Windows update icon (credit to [edamame-maru](https://github.com/edamame-maru))
-- [ ] Working Windows 7 Command Prompt with commands
 - [ ] Functionality to choose the desktop background
+- [ ] Bigger default window size and the ability to resize
 
 ## License
 
