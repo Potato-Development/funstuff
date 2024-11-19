@@ -616,6 +616,31 @@ const NotepadWindow = ({ onClose }) => {
 };
 
 const CommandPromptWindow = ({ onClose }) => {
+  const [commandInput, setCommandInput] = useState('');
+  const [commandOutput, setCommandOutput] = useState('');
+  
+  const handleCommandInput = (event) => {
+    setCommandInput(event.target.value)
+  }
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      const formattedInput = commandInput.toUpperCase()
+      if (formattedInput.trim() === 'HELP') {
+        setCommandOutput(`For more information on a specific command, type HELP command-name\nVER            Displays the Windows version.`)
+      } else if (formattedInput.startsWith('HELP ')) {
+          if (formattedInput.slice(5) === 'VER') {
+            setCommandOutput(`Displays the Windows version.\n\nVER`)
+          }
+      } else if (formattedInput === 'VER') {
+        setCommandOutput(`Microsoft Windows [Version 6.1.7601]`)
+      } else {
+        setCommandOutput(`'${commandInput}' is not recognized as an internal or external command, operable program or batch file.`)
+      }
+      setCommandInput('')
+    }
+  };
+  
   return (
     <Rnd
       default={{
@@ -633,9 +658,9 @@ const CommandPromptWindow = ({ onClose }) => {
           </div>
         </div>
         <div className="window-body has-space commandprompt">
-          <div className="placeholder commandprompt">
-            <p>Command Prompt Window</p>
-            <p>Work in Progress...</p>
+          <div className="placeholder">
+            <div className="inputcontainer"><div>C:\Windows\System32&gt;&nbsp;</div><input type="text" id="commandinput" value={commandInput} onChange={handleCommandInput} onKeyDown={handleKeyPress}></input></div>
+            <textarea id="commandoutput" rows={4} disabled value={commandOutput}></textarea>
           </div>
         </div>
       </div>

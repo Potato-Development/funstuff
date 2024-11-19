@@ -285,9 +285,35 @@
 
   .commandprompt {
     background: black !important;
-    color: white
+    color: white;
+    display: flex;
+    flex-direction: column;
   }
 
-  .commandprompt > p {
-    margin: 3px;
+  .inputcontainer {
+    display: flex;
+    align-items: center;
+  }
+
+  #commandinput {
+    width: 100%;
+    background: none;
+    border: none;
+    border-radius: 0;
+    box-sizing: border-box;
+    font: 9pt Segoe UI, SegoeUI, Noto Sans, sans-serif;
+    padding: 0;
+    color: white;
+  }
+
+  #commandoutput {
+    width: 100%;
+    background: none;
+    border: none;
+    border-radius: 0;
+    box-sizing: border-box;
+    font: 9pt Segoe UI, SegoeUI, Noto Sans, sans-serif;
+    padding: 0;
+    color: white;
+    resize: none;
   }
