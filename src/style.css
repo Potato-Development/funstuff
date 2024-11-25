@@ -121,6 +121,12 @@
     top: 420px;
     left: 20px;
   }
+
+  i#fullscreen {
+    position: absolute;
+    top: 420px;
+    left: 100px;
+  }
   
   .iconcontainer {
     width: fit-content;

@@ -20,6 +20,7 @@ function App() {
   const iconRef9 = useRef(null);
   const iconRef10 = useRef(null);
   const iconRef11 = useRef(null);
+  const iconRef12 = useRef(null);
   const [clickVolume, setClickVolume] = useState(0);
   const [playClick] = useSound(clicksound, { volume: clickVolume });
   const [openWindows, setOpenWindows] = useState({});
@@ -82,6 +83,8 @@ function App() {
         handleUpdateStart();
       } else if (id === "taskbar") {
         handleToggleTaskbar();
+      } else if (id === "fullscreen") {
+        handleFullScreen();
       }
       setSelectedIcon(null)
     } else {
@@ -169,6 +172,14 @@ function App() {
     }
   };
 
+  const handleFullScreen = () => {
+    if (!document.fullscreenElement) {
+      document.body.requestFullscreen()
+    } else {
+      document.exitFullscreen()
+    }
+  };
+
   const closeWindow = (type) => {
     const updatedOpenWindows = { ...openWindows };
     const updatedWindows = windows.filter((window) => {
@@ -222,9 +233,11 @@ function App() {
         iconRef9.current &&
         !iconRef9.current.contains(event.target) &&
         iconRef10.current &&
-        !iconRef10.current.contains(event.target)&&
+        !iconRef10.current.contains(event.target) &&
         iconRef11.current &&
-        !iconRef11.current.contains(event.target)
+        !iconRef11.current.contains(event.target) &&
+        iconRef12.current &&
+        !iconRef12.current.contains(event.target)
       ) {
         setSelectedIcon(null);
       }
@@ -377,10 +390,23 @@ function App() {
           ref={iconRef11}
         >
           <div className="picture">
-            <img src="icons/cmd.png" alt="Taskbar" />
+            <img src="icons/cmd.png" alt="Command Prompt" />
           </div>
           <div className="name">
             <span>Command Prompt</span>
+          </div>
+        </Icon>
+        <Icon
+          id="fullscreen"
+          isSelected={selectedIcon === "fullscreen"}
+          onClick={() => handleClick("fullscreen")}
+          ref={iconRef12}
+        >
+          <div className="picture">
+            <img src="icons/fullscreen.png" alt="Full Screen" />
+          </div>
+          <div className="name">
+            <span>Full Screen</span>
           </div>
         </Icon>
       </div>
