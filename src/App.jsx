@@ -4,6 +4,8 @@ import "7.css/dist/7.css";
 import { Rnd } from "react-rnd";
 import useSound from "use-sound";
 import clicksound from "./assets/sounds/click.mp3";
+import errorsound from "./assets/sounds/error.wav";
+import defaultsound from "./assets/sounds/default.wav";
 import Clock from "react-live-clock";
 
 function App() {
@@ -21,19 +23,21 @@ function App() {
   const iconRef10 = useRef(null);
   const iconRef11 = useRef(null);
   const iconRef12 = useRef(null);
-  const [clickVolume, setClickVolume] = useState(0);
+  const [clickVolume, setClickVolume] = useState(0.5);
   const [playClick] = useSound(clicksound, { volume: clickVolume });
+  const [playError] = useSound(errorsound, { volume: clickVolume });
+  const [playDefault] = useSound(defaultsound, { volume: clickVolume });
   const [openWindows, setOpenWindows] = useState({});
   const [audioPanelOpen, setAudioPanelOpen] = useState(false);
   const [actionRead, setActionRead] = useState(false);
   const [actionOpen, setActionOpen] = useState(false);
   const [showTaskbar, setShowTaskbar] = useState(true);
-
-  const handleVolumeChange = (volume) => {
-    setClickVolume(volume);
-  };
+  const [playSounds, setPlaySounds] = useState(false);
+  const [showUpdate, setShowUpdate] = useState(false);
+  const [updateProgress, setUpdateProgress] = useState(0);
 
   const getVolumeIcon = () => {
+    if (!playSounds) return "tray/audio0.png";
     if (clickVolume >= 0 && clickVolume < 0.1) return "tray/audio1.png";
     else if (clickVolume <= 0.3) return "tray/audio4.png";
     else if (clickVolume <= 0.6) return "tray/audio3.png";
@@ -50,32 +54,60 @@ function App() {
       if (id === "about") {
         if (!openWindows["about"]) {
           addAboutWindow();
+        } else {
+          if (playSounds) {
+            playError()
+          }
         }
       } else if (id === "recyclebin") {
         handleRecycleBin();
       } else if (id === "pet") {
         if (!openWindows["pet"]) {
           addPetWindow();
+        } else {
+          if (playSounds) {
+            playError()
+          }
         }
       } else if (id === "chat") {
         if (!openWindows["chat"]) {
           addChatWindow();
+        } else {
+          if (playSounds) {
+            playError()
+          }
         }
       } else if (id === "internet") {
         if (!openWindows["internet"]) {
           addInternetWindow();
+        } else {
+          if (playSounds) {
+            playError()
+          }
         }
       } else if (id === "computer") {
         if (!openWindows["computer"]) {
           addComputerWindow();
+        } else {
+          if (playSounds) {
+            playError()
+          }
         }
       } else if (id === "notepad") {
         if (!openWindows["notepad"]) {
           addNotepadWindow();
+        } else {
+          if (playSounds) {
+            playError()
+          }
         }
       } else if (id === "commandprompt") {
         if (!openWindows["commandprompt"]) {
           addCommandPromptWindow();
+        } else {
+          if (playSounds) {
+            playError()
+          }
         }
       } else if (id === "horror") {
         handleHorrorStart();
@@ -96,49 +128,42 @@ function App() {
     const newWindow = <AboutWindow key={windows.length} onClose={() => closeWindow("about")} />;
     setWindows([...windows, newWindow]);
     setOpenWindows({ ...openWindows, about: true });
-    console.log("openWindows after adding about window:", openWindows);
   };
 
   const addPetWindow = () => {
     const newWindow = <PetWindow key={windows.length} onClose={() => closeWindow("pet")} />;
     setWindows([...windows, newWindow]);
     setOpenWindows({ ...openWindows, pet: true });
-    console.log("openWindows after adding pet window:", openWindows);
   };
 
   const addChatWindow = () => {
     const newWindow = <ChatWindow key={windows.length} onClose={() => closeWindow("chat")} />;
     setWindows([...windows, newWindow]);
     setOpenWindows({ ...openWindows, chat: true });
-    console.log("openWindows after adding chat window:", openWindows);
   };
 
   const addInternetWindow = () => {
     const newWindow = <InternetWindow key={windows.length} onClose={() => closeWindow("internet")} />;
     setWindows([...windows, newWindow]);
     setOpenWindows({ ...openWindows, internet: true });
-    console.log("openWindows after adding internet window:", openWindows);
   };
 
   const addComputerWindow = () => {
     const newWindow = <ComputerWindow key={windows.length} onClose={() => closeWindow("computer")} />;
     setWindows([...windows, newWindow]);
     setOpenWindows({ ...openWindows, computer: true });
-    console.log("openWindows after adding computer window:", openWindows);
   };
 
   const addNotepadWindow = () => {
     const newWindow = <NotepadWindow key={windows.length} onClose={() => closeWindow("notepad")} />;
     setWindows([...windows, newWindow]);
     setOpenWindows({ ...openWindows, notepad: true });
-    console.log("openWindows after adding notepad window:", openWindows);
   };
 
   const addCommandPromptWindow = () => {
     const newWindow = <CommandPromptWindow key={windows.length} onClose={() => closeWindow("commandprompt")} />;
     setWindows([...windows, newWindow]);
     setOpenWindows({ ...openWindows, commandprompt: true });
-    console.log("openWindows after adding command prompt window:", openWindows);
   };
 
   const handleRecycleBin = () => {
@@ -150,7 +175,7 @@ function App() {
   };
 
   const handleUpdateStart = () => {
-    alert("Development takes time...");
+    setShowUpdate(true)
   };
 
   const handleAudioPanel = () => {
@@ -209,7 +234,13 @@ function App() {
     });
     setWindows(updatedWindows);
     setOpenWindows(updatedOpenWindows);
-  };  
+  };
+
+  useEffect(() => {
+        if (showUpdate) {
+            document.getElementById('updatescreen').requestFullscreen()
+        }
+  }, [showUpdate]);
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -251,7 +282,16 @@ function App() {
   }, []);
 
   return (
-    <div className="App" onMouseDownCapture={playClick}>
+    <div className="App" onMouseDownCapture={() => {if (playSounds) playClick()}}>
+      {showUpdate && updateProgress < 100 &&
+        <div id="updatescreen" onMouseDownCapture={() => {setUpdateProgress(updateProgress + 1)}}>
+            <div className="updatecontainer">
+              <span className="loader animate updatespinner" aria-label="Loading"></span>
+              <span className="updatetext">Configuring Windows updates<br/>{updateProgress}% complete<br/>Do not turn off your computer.</span>
+            </div>
+            <img className="updatelogo" src="images/sevenlogo.png"></img>
+        </div>
+      }
       <div className="iconcontainer">
         <Icon
           id="about"
@@ -438,7 +478,7 @@ function App() {
         </div>
       </div>
       {audioPanelOpen && (
-        <AudioPanel clickVolume={clickVolume} setClickVolume={handleVolumeChange} />
+        <AudioPanel clickVolume={clickVolume} setClickVolume={setClickVolume} playSounds={playSounds} setPlaySounds={setPlaySounds} playDefault={playDefault} />
       )}
       {actionOpen && (
         <Action/>
@@ -632,8 +672,7 @@ const NotepadWindow = ({ onClose }) => {
         </div>
         <div className="window-body has-space">
           <div className="placeholder">
-            <p>Notepad Window</p>
-            <p>Work in Progress...</p>
+            <textarea id="notepadinput"></textarea>
           </div>
         </div>
       </div>
@@ -696,13 +735,7 @@ const CommandPromptWindow = ({ onClose }) => {
   );
 };
 
-const AudioPanel = ({ clickVolume, setClickVolume }) => {
-  const [sliderValue, setSliderValue] = useState(clickVolume);
-
-  const handleSaveClick = () => {
-    setClickVolume(sliderValue);
-  };
-
+const AudioPanel = ({ clickVolume, setClickVolume, playSounds, setPlaySounds, playDefault }) => {
   return (
     <div className="panelcontainer">
       <div className="window active">
@@ -716,16 +749,18 @@ const AudioPanel = ({ clickVolume, setClickVolume }) => {
             min="0"
             max="1"
             step={0.1}
-            value={sliderValue}
-            onChange={(event) => setSliderValue(event.target.value)}
+            value={clickVolume}
+            onChange={(event) => setClickVolume(event.target.value)}
+            onMouseUp={() => {if (playSounds) playDefault()}}
             style={{width: "95%"}}
           />
-          {sliderValue === 0 ? (
+          {clickVolume === 0 ? (
             <p>Muted</p>
           ) : (
-            <p>Value: {sliderValue * 10}</p>
+            <p>Value: {clickVolume * 10}</p>
           )}
-          <button onClick={handleSaveClick}>Save</button>
+          <input type="checkbox" id="errors" checked={playSounds} onChange={(event) => setPlaySounds(event.target.checked)}></input>
+          <label htmlFor="errors">Sounds</label>
         </div>
       </div>
     </div>

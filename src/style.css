@@ -184,7 +184,7 @@
   }
   
   .taskbar {
-    z-index: 999999999999999999;
+    z-index: 1000;
     position: absolute;
     bottom: 0;
     height: 40px;
@@ -202,7 +202,6 @@
   
   .bg {
     background-color: var(--aero-accent);
-    -webkit-backdrop-filter: blur(6px);
     backdrop-filter: blur(6px);
   }
   
@@ -321,5 +320,67 @@
     font: 9pt Segoe UI, SegoeUI, Noto Sans, sans-serif;
     padding: 0;
     color: white;
+    resize: none;
+  }
+
+  #updatescreen {
+    display: block;
+    position: absolute;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-image: url(../images/update.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    user-select: none;
+    cursor: none;
+  }
+
+  .updatelogo {
+    width: 200px;
+    z-index: 2000;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-bottom: 20px;
+  }
+
+  .updatecontainer {
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    top: 50%;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .updatetext {
+    text-align: center;
+    color: white;
+    font-size: 20px;
+  }
+
+  .updatespinner {
+    z-index: 2000;
+  }
+
+  #notepadinput {
+    width: 100%;
+    height: 100%;
+    background: none;
+    border: none;
+    border-radius: 0;
+    box-sizing: border-box;
+    font: 9pt Segoe UI, SegoeUI, Noto Sans, sans-serif;
+    padding: 0;
+    color: black;
     resize: none;
   }
