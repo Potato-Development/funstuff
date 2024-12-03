@@ -36,14 +36,15 @@
 
 ## Roadmap
 
-- [ ] Larger sound functionality with error and success sounds
-- [ ] Original Notepad app
-- [ ] Internet Explorer recreation with one website
-- [ ] Windows Live Messenger with friends and chat tab
-- [ ] Complex horror experience with many features
-- [ ] Fake Windows update icon (credit to [edamame-maru](https://github.com/edamame-maru))
-- [ ] Functionality to choose the desktop background
-- [ ] Bigger default window size and the ability to resize
+    WIP - Work in Progress │ NTD - Next to Do │ TD - To Do
+
+- [ ] Larger sound functionality with error and success sounds - WIP
+- [ ] Original Notepad app - WIP
+- [ ] Internet Explorer recreation with one website - TD
+- [ ] Windows Live Messenger with friends and chat tab - TD
+- [ ] Complex horror experience with many features - TD
+- [ ] Functionality to choose the desktop background - NTD
+- [ ] Bigger default window size and the ability to resize - NTD
 
 ## License
 
