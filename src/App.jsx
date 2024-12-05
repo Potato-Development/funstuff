@@ -598,11 +598,33 @@ const ChatWindow = ({ onClose }) => {
 };
 
 const InternetWindow = ({ onClose }) => {
+  const [currentWebsite, setCurrentWebsite] = useState('');
+  const [searchInput, setSearchInput] = useState('');
+
+  const handleSearchInput = (event) => {
+    setSearchInput(event.target.value)
+  }
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      if (searchInput.trim() === '') {
+        setCurrentWebsite('https://example.com')
+        setSearchInput('https://example.com')
+      } else if (!searchInput.startsWith('http://') && !searchInput.startsWith('https://')) {
+        setCurrentWebsite('http://' + searchInput)
+        setSearchInput('http://' + searchInput)
+      } else {
+        setCurrentWebsite(searchInput)
+        setSearchInput(searchInput)
+      }
+    }
+  };
+
   return (
     <Rnd
       default={{
         x: 200,
-        y: 200
+        y: 200,
       }}
       enableResizing={false}
       dragHandleClassName="title-bar"
@@ -615,10 +637,13 @@ const InternetWindow = ({ onClose }) => {
           </div>
         </div>
         <div className="window-body has-space">
-          <div className="placeholder">
-            <p>Internet Explorer</p>
-            <p>Work in Progress...</p>
-          </div>
+            <div className="internetcontainer">
+              <div className="internetheader">
+                <input className="internetsearch" type="text" value={searchInput} onChange={handleSearchInput} onKeyDown={handleKeyPress} placeholder="https://example.com"></input>
+              </div>
+              <iframe className="internetcontent" src={currentWebsite}></iframe>
+              <div className="internetfooter"></div>
+            </div>
         </div>
       </div>
     </Rnd>

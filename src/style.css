@@ -384,3 +384,15 @@
     color: black;
     resize: none;
   }
+
+  .internetcontent {
+    width: 800px;
+    height: 400px;
+    background: none;
+    border: none;
+  }
+
+  .internetsearch {
+    width: 100%;
+    box-sizing: border-box;
+  }
