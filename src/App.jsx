@@ -451,10 +451,7 @@ function App() {
         </Icon>
       </div>
       <div className="windowcontainer">
-      {windows.map((window, index) => {
-        console.log("Window component:", window.type.name);
-        return <div key={index}>{window}</div>;
-      })}
+      {windows.map((window, index) => {return <div key={index}>{window}</div>})}
       </div>
       <div className="taskbarcontainer">
         <div className="taskbar bg"></div>
@@ -679,6 +676,41 @@ const ComputerWindow = ({ onClose }) => {
 };
 
 const NotepadWindow = ({ onClose }) => {
+  const [wordWrap, setWordWrap] = useState(false)
+  const [size, setSize] = useState('Medium')
+  const [font, setFont] = useState('Segoe UI')
+
+  const handleWordWrap = () => {
+    setWordWrap(!wordWrap)
+    if (wordWrap) {
+      document.getElementById('notepadinput').style.textWrap = 'wrap'
+    } else if (!wordWrap) {
+      document.getElementById('notepadinput').style.textWrap = 'nowrap'
+    }
+  }
+
+  const handleSize = (value) => {
+    setSize(value)
+    if (value === 'Small') {
+      document.getElementById('notepadinput').style.fontSize = '6pt'
+    } else if (value === 'Medium') {
+      document.getElementById('notepadinput').style.fontSize = '9pt'
+    } else if (value === 'Large') {
+      document.getElementById('notepadinput').style.fontSize = '12pt'
+    }
+  }
+
+  const handleFont = (value) => {
+    setFont(value)
+    if (value === 'Arial') {
+      document.getElementById('notepadinput').style.fontFamily = 'Arial, sans-serif'
+    } else if (value === 'Consolas') {
+      document.getElementById('notepadinput').style.fontFamily = 'Consolas, monaco, monospace'
+    } else if (value === 'Segoe UI') {
+      document.getElementById('notepadinput').style.fontFamily = 'Segoe UI, SegoeUI, Noto Sans, sans-serif'
+    }
+  }
+
   return (
     <Rnd
       default={{
@@ -695,10 +727,41 @@ const NotepadWindow = ({ onClose }) => {
             <button aria-label="Close" onClick={onClose}></button>
           </div>
         </div>
-        <div className="window-body has-space">
-          <div className="placeholder">
-            <textarea id="notepadinput"></textarea>
-          </div>
+        <div className="window-body">
+          <ul role="menubar">
+            <li role="menuitem" tabIndex="0">File</li>
+            <li role="menuitem" tabIndex="0">Edit</li>
+            <li role="menuitem" tabIndex="0" aria-haspopup="true">
+              Format
+              <ul role="menu">
+                <li role="menuitem"><a onClick={() => handleWordWrap()}>Word Wrap {wordWrap && <span>{'\u2714'}</span>}</a></li>
+                <li role="menuitem" tabIndex="0" aria-haspopup="true">
+                  Font...
+                  <ul role="menu">
+                    <li role="menuitem" tabIndex="0" aria-haspopup="true">
+                      Font
+                      <ul role="menu">
+                        <li role="menuitem"><a onClick={() => {handleFont('Arial')}}>Arial {font === 'Arial' && <span>{'\u2714'}</span>}</a></li>
+                        <li role="menuitem"><a onClick={() => {handleFont('Consolas')}}>Consolas {font === 'Consolas' && <span>{'\u2714'}</span>}</a></li>
+                        <li role="menuitem"><a onClick={() => {handleFont('Segoe UI')}}>Segoe UI {font === 'Segoe UI' && <span>{'\u2714'}</span>}</a></li>
+                      </ul>
+                    </li>
+                    <li role="menuitem" tabIndex="0" aria-haspopup="true">
+                      Size
+                      <ul role="menu">
+                        <li role="menuitem"><a onClick={() => {handleSize('Small')}}>Small {size === 'Small' && <span>{'\u2714'}</span>}</a></li>
+                        <li role="menuitem"><a onClick={() => {handleSize('Medium')}}>Medium {size === 'Medium' && <span>{'\u2714'}</span>}</a></li>
+                        <li role="menuitem"><a onClick={() => {handleSize('Large')}}>Large {size === 'Large' && <span>{'\u2714'}</span>}</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li role="menuitem" tabIndex="0">View</li>
+            <li role="menuitem" tabIndex="0">Help</li>
+          </ul>
+          <textarea id="notepadinput" className="has-scrollbar"></textarea>
         </div>
       </div>
     </Rnd>

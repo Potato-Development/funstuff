@@ -40,7 +40,6 @@
 
 - [ ] Larger sound functionality with error and success sounds - WIP
 - [ ] Original Notepad app - WIP
-- [ ] Internet Explorer recreation with one website - TD
 - [ ] Windows Live Messenger with friends and chat tab - TD
 - [ ] Complex horror experience with many features - TD
 - [ ] Functionality to choose the desktop background - NTD

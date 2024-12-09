@@ -156,20 +156,20 @@
     height: 150px;
   }
   
-  body, div {
-    cursor: url('./assets/cursors/default.cur'), default;
+  body, div, ul {
+    cursor: url('./assets/cursors/default.cur'), default !important;
   }
   
   .title-bar, .title-bar div {
-    cursor: url('./assets/cursors/move.cur'), move;
+    cursor: url('./assets/cursors/move.cur'), move !important;
   }
   
-  button, i[id], i span, .start, .audio, .action, .picture, .name {
-    cursor: url('./assets/cursors/pointer.cur'), pointer;
+  button, i[id], i span, .start, .audio, .action, .picture, .name, li, li > a {
+    cursor: url('./assets/cursors/pointer.cur'), pointer !important;
   }
   
-  p, h1, h2, h3, h4, h5, h6, span, a, b, i, u, strong, em, small, big {
-    cursor: url('./assets/cursors/select.cur'), text;
+  p, h1, h2, h3, h4, h5, h6, span, a, b, i, u, strong, em, small, big, textarea {
+    cursor: url('./assets/cursors/select.cur'), text !important;
   }
   
   .taskbarcontainer {
@@ -373,16 +373,17 @@
   }
 
   #notepadinput {
-    width: 100%;
-    height: 100%;
+    width: 300px;
+    height: 100px;
     background: none;
     border: none;
     border-radius: 0;
     box-sizing: border-box;
-    font: 9pt Segoe UI, SegoeUI, Noto Sans, sans-serif;
-    padding: 0;
+    font-family: Segoe UI, SegoeUI, Noto Sans, sans-serif;
+    font-size: 9pt;
     color: black;
     resize: none;
+    padding: 6px;
   }
 
   .internetcontent {
