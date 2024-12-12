@@ -38,12 +38,9 @@
 
     WIP - Work in Progress │ NTD - Next to Do │ TD - To Do
 
-- [ ] Larger sound functionality with error and success sounds - WIP
-- [ ] Original Notepad app - WIP
 - [ ] Windows Live Messenger with friends and chat tab - TD
-- [ ] Complex horror experience with many features - TD
-- [ ] Functionality to choose the desktop background - NTD
-- [ ] Bigger default window size and the ability to resize - NTD
+- [ ] Complex horror experience with many features - NTD
+- [ ] Bigger default window size and the ability to resize - WIP
 
 ## License
 

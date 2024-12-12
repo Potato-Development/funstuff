@@ -514,7 +514,7 @@ useEffect(() => {
           ref={iconRef13}
         >
           <div className="picture">
-            <img src="icons/notepad.png" alt="Wallpaper" />
+            <img src="icons/wallpaper.png" alt="Wallpaper" />
           </div>
           <div className="name">
             <span>Wallpaper</span>
