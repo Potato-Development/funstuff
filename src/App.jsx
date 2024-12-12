@@ -6,6 +6,8 @@ import useSound from "use-sound";
 import clicksound from "./assets/sounds/click.mp3";
 import errorsound from "./assets/sounds/error.wav";
 import defaultsound from "./assets/sounds/default.wav";
+import startupsound from "./assets/sounds/startup.mp3";
+import shutdownsound from "./assets/sounds/shutdown.mp3";
 import Clock from "react-live-clock";
 
 function App() {
@@ -23,10 +25,13 @@ function App() {
   const iconRef10 = useRef(null);
   const iconRef11 = useRef(null);
   const iconRef12 = useRef(null);
+  const iconRef13 = useRef(null);
   const [clickVolume, setClickVolume] = useState(0.5);
   const [playClick] = useSound(clicksound, { volume: clickVolume });
   const [playError] = useSound(errorsound, { volume: clickVolume });
   const [playDefault] = useSound(defaultsound, { volume: clickVolume });
+  const [playStartup] = useSound(startupsound, { volume: clickVolume });
+  const [playShutdown] = useSound(shutdownsound, { volume: clickVolume });
   const [openWindows, setOpenWindows] = useState({});
   const [audioPanelOpen, setAudioPanelOpen] = useState(false);
   const [actionRead, setActionRead] = useState(false);
@@ -35,6 +40,7 @@ function App() {
   const [playSounds, setPlaySounds] = useState(false);
   const [showUpdate, setShowUpdate] = useState(false);
   const [updateProgress, setUpdateProgress] = useState(0);
+  const timerRef = useRef(null);
 
   const getVolumeIcon = () => {
     if (!playSounds) return "tray/audio0.png";
@@ -109,6 +115,14 @@ function App() {
             playError()
           }
         }
+      } else if (id === "wallpaper") {
+        if (!openWindows["wallpaper"]) {
+          addWallpaperWindow();
+        } else {
+          if (playSounds) {
+            playError()
+          }
+        }
       } else if (id === "horror") {
         handleHorrorStart();
       } else if (id === "update") {
@@ -166,6 +180,12 @@ function App() {
     setOpenWindows({ ...openWindows, commandprompt: true });
   };
 
+  const addWallpaperWindow = () => {
+    const newWindow = <WallpaperWindow key={windows.length} onClose={() => closeWindow("wallpaper")} />;
+    setWindows([...windows, newWindow]);
+    setOpenWindows({ ...openWindows, wallpaper: true });
+  };
+
   const handleRecycleBin = () => {
     alert("Recycle Bin clicked");
   };
@@ -175,7 +195,8 @@ function App() {
   };
 
   const handleUpdateStart = () => {
-    setShowUpdate(true)
+    setShowUpdate(true);
+    playShutdown();
   };
 
   const handleAudioPanel = () => {
@@ -229,6 +250,9 @@ function App() {
       } else if (type === "commandprompt" && window.type === "commandprompt") {
         updatedOpenWindows.commandprompt = false;
         return false;
+      } else if (type === "wallpaper" && window.type === "wallpaper") {
+        updatedOpenWindows.wallpaper = false;
+        return false;
       }
       return true;
     });
@@ -238,8 +262,25 @@ function App() {
 
   useEffect(() => {
         if (showUpdate) {
-            document.getElementById('updatescreen').requestFullscreen()
+          document.getElementById("updatescreen").requestFullscreen()
+        } else {
+          if (document.fullscreenElement) {
+            document.exitFullscreen()
+          }
         }
+  }, [showUpdate]);
+
+useEffect(() => {
+    const handleChange = () => {
+      if (!document.fullscreenElement && showUpdate) {
+        setShowUpdate(false);
+        playStartup();
+      }
+    };
+    document.addEventListener("fullscreenchange", handleChange);
+    return () => {
+      document.removeEventListener("fullscreenchange", handleChange);
+    };
   }, [showUpdate]);
 
   useEffect(() => {
@@ -268,7 +309,9 @@ function App() {
         iconRef11.current &&
         !iconRef11.current.contains(event.target) &&
         iconRef12.current &&
-        !iconRef12.current.contains(event.target)
+        !iconRef12.current.contains(event.target) &&
+        iconRef13.current &&
+        !iconRef13.current.contains(event.target)
       ) {
         setSelectedIcon(null);
       }
@@ -281,10 +324,25 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    if (showUpdate) {
+      timerRef.current = setTimeout(() => {
+        setUpdateProgress(updateProgress + 1);
+        if (updateProgress > 99) {
+          setShowUpdate(false)
+          playStartup()
+        }
+      }, 1000);
+    }
+    () => {
+      clearTimeout(timerRef.current);
+    }
+  }, [updateProgress, showUpdate])
+
   return (
     <div className="App" onMouseDownCapture={() => {if (playSounds) playClick()}}>
-      {showUpdate && updateProgress < 100 &&
-        <div id="updatescreen" onMouseDownCapture={() => {setUpdateProgress(updateProgress + 1)}}>
+      {showUpdate &&
+        <div id="updatescreen">
             <div className="updatecontainer">
               <span className="loader animate updatespinner" aria-label="Loading"></span>
               <span className="updatetext">Configuring Windows updates<br/>{updateProgress}% complete<br/>Do not turn off your computer.</span>
@@ -433,7 +491,7 @@ function App() {
             <img src="icons/cmd.png" alt="Command Prompt" />
           </div>
           <div className="name">
-            <span>Command Prompt</span>
+            <span>Terminal</span>
           </div>
         </Icon>
         <Icon
@@ -447,6 +505,19 @@ function App() {
           </div>
           <div className="name">
             <span>Full Screen</span>
+          </div>
+        </Icon>
+        <Icon
+          id="wallpaper"
+          isSelected={selectedIcon === "wallpaper"}
+          onClick={() => handleClick("wallpaper")}
+          ref={iconRef13}
+        >
+          <div className="picture">
+            <img src="icons/notepad.png" alt="Wallpaper" />
+          </div>
+          <div className="name">
+            <span>Wallpaper</span>
           </div>
         </Icon>
       </div>
@@ -595,21 +666,21 @@ const ChatWindow = ({ onClose }) => {
 };
 
 const InternetWindow = ({ onClose }) => {
-  const [currentWebsite, setCurrentWebsite] = useState('');
-  const [searchInput, setSearchInput] = useState('');
+  const [currentWebsite, setCurrentWebsite] = useState("");
+  const [searchInput, setSearchInput] = useState("");
 
   const handleSearchInput = (event) => {
     setSearchInput(event.target.value)
   }
 
   const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      if (searchInput.trim() === '') {
-        setCurrentWebsite('https://example.com')
-        setSearchInput('https://example.com')
-      } else if (!searchInput.startsWith('http://') && !searchInput.startsWith('https://')) {
-        setCurrentWebsite('http://' + searchInput)
-        setSearchInput('http://' + searchInput)
+    if (event.key === "Enter") {
+      if (searchInput.trim() === "") {
+        setCurrentWebsite("https://example.com")
+        setSearchInput("https://example.com")
+      } else if (!searchInput.startsWith("http://") && !searchInput.startsWith("https://")) {
+        setCurrentWebsite("http://" + searchInput)
+        setSearchInput("http://" + searchInput)
       } else {
         setCurrentWebsite(searchInput)
         setSearchInput(searchInput)
@@ -677,37 +748,37 @@ const ComputerWindow = ({ onClose }) => {
 
 const NotepadWindow = ({ onClose }) => {
   const [wordWrap, setWordWrap] = useState(false)
-  const [size, setSize] = useState('Medium')
-  const [font, setFont] = useState('Segoe UI')
+  const [size, setSize] = useState("Medium")
+  const [font, setFont] = useState("Segoe UI")
 
   const handleWordWrap = () => {
     setWordWrap(!wordWrap)
     if (wordWrap) {
-      document.getElementById('notepadinput').style.textWrap = 'wrap'
+      document.getElementById("notepadinput").style.textWrap = "wrap"
     } else if (!wordWrap) {
-      document.getElementById('notepadinput').style.textWrap = 'nowrap'
+      document.getElementById("notepadinput").style.textWrap = "nowrap"
     }
   }
 
   const handleSize = (value) => {
     setSize(value)
-    if (value === 'Small') {
-      document.getElementById('notepadinput').style.fontSize = '6pt'
-    } else if (value === 'Medium') {
-      document.getElementById('notepadinput').style.fontSize = '9pt'
-    } else if (value === 'Large') {
-      document.getElementById('notepadinput').style.fontSize = '12pt'
+    if (value === "Small") {
+      document.getElementById("notepadinput").style.fontSize = "6pt"
+    } else if (value === "Medium") {
+      document.getElementById("notepadinput").style.fontSize = "9pt"
+    } else if (value === "Large") {
+      document.getElementById("notepadinput").style.fontSize = "12pt"
     }
   }
 
   const handleFont = (value) => {
     setFont(value)
-    if (value === 'Arial') {
-      document.getElementById('notepadinput').style.fontFamily = 'Arial, sans-serif'
-    } else if (value === 'Consolas') {
-      document.getElementById('notepadinput').style.fontFamily = 'Consolas, monaco, monospace'
-    } else if (value === 'Segoe UI') {
-      document.getElementById('notepadinput').style.fontFamily = 'Segoe UI, SegoeUI, Noto Sans, sans-serif'
+    if (value === "Arial") {
+      document.getElementById("notepadinput").style.fontFamily = "Arial, sans-serif"
+    } else if (value === "Consolas") {
+      document.getElementById("notepadinput").style.fontFamily = "Consolas, monaco, monospace"
+    } else if (value === "Segoe UI") {
+      document.getElementById("notepadinput").style.fontFamily = "Segoe UI, SegoeUI, Noto Sans, sans-serif"
     }
   }
 
@@ -734,24 +805,24 @@ const NotepadWindow = ({ onClose }) => {
             <li role="menuitem" tabIndex="0" aria-haspopup="true">
               Format
               <ul role="menu">
-                <li role="menuitem"><a onClick={() => handleWordWrap()}>Word Wrap {wordWrap && <span>{'\u2714'}</span>}</a></li>
+                <li role="menuitem"><a onClick={() => handleWordWrap()}>Word Wrap {wordWrap && <span>{"\u2714"}</span>}</a></li>
                 <li role="menuitem" tabIndex="0" aria-haspopup="true">
                   Font...
                   <ul role="menu">
                     <li role="menuitem" tabIndex="0" aria-haspopup="true">
                       Font
                       <ul role="menu">
-                        <li role="menuitem"><a onClick={() => {handleFont('Arial')}}>Arial {font === 'Arial' && <span>{'\u2714'}</span>}</a></li>
-                        <li role="menuitem"><a onClick={() => {handleFont('Consolas')}}>Consolas {font === 'Consolas' && <span>{'\u2714'}</span>}</a></li>
-                        <li role="menuitem"><a onClick={() => {handleFont('Segoe UI')}}>Segoe UI {font === 'Segoe UI' && <span>{'\u2714'}</span>}</a></li>
+                        <li role="menuitem"><a onClick={() => {handleFont("Arial")}}>Arial {font === "Arial" && <span>{"\u2714"}</span>}</a></li>
+                        <li role="menuitem"><a onClick={() => {handleFont("Consolas")}}>Consolas {font === "Consolas" && <span>{"\u2714"}</span>}</a></li>
+                        <li role="menuitem"><a onClick={() => {handleFont("Segoe UI")}}>Segoe UI {font === "Segoe UI" && <span>{"\u2714"}</span>}</a></li>
                       </ul>
                     </li>
                     <li role="menuitem" tabIndex="0" aria-haspopup="true">
                       Size
                       <ul role="menu">
-                        <li role="menuitem"><a onClick={() => {handleSize('Small')}}>Small {size === 'Small' && <span>{'\u2714'}</span>}</a></li>
-                        <li role="menuitem"><a onClick={() => {handleSize('Medium')}}>Medium {size === 'Medium' && <span>{'\u2714'}</span>}</a></li>
-                        <li role="menuitem"><a onClick={() => {handleSize('Large')}}>Large {size === 'Large' && <span>{'\u2714'}</span>}</a></li>
+                        <li role="menuitem"><a onClick={() => {handleSize("Small")}}>Small {size === "Small" && <span>{"\u2714"}</span>}</a></li>
+                        <li role="menuitem"><a onClick={() => {handleSize("Medium")}}>Medium {size === "Medium" && <span>{"\u2714"}</span>}</a></li>
+                        <li role="menuitem"><a onClick={() => {handleSize("Large")}}>Large {size === "Large" && <span>{"\u2714"}</span>}</a></li>
                       </ul>
                     </li>
                   </ul>
@@ -769,30 +840,30 @@ const NotepadWindow = ({ onClose }) => {
 };
 
 const CommandPromptWindow = ({ onClose }) => {
-  const [commandInput, setCommandInput] = useState('');
-  const [commandOutput, setCommandOutput] = useState('');
+  const [commandInput, setCommandInput] = useState("");
+  const [commandOutput, setCommandOutput] = useState("");
   
   const handleCommandInput = (event) => {
     setCommandInput(event.target.value)
   }
 
   const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       const formattedInput = commandInput.toUpperCase()
-      if (formattedInput.trim() === 'HELP') {
+      if (formattedInput.trim() === "HELP") {
         setCommandOutput(`For more information on a specific command, type HELP command-name\nHELP           Provides Help information for Windows commands.\nVER            Displays the Windows version.`)
-      } else if (formattedInput.startsWith('HELP ')) {
-        if (formattedInput.slice(5) === 'HELP') {
+      } else if (formattedInput.startsWith("HELP ")) {
+        if (formattedInput.slice(5) === "HELP") {
           setCommandOutput(`Provides help information for Windows commands.\n\nHELP [command]\n\n    command - displays help information on that command.`)
-        } else if (formattedInput.slice(5) === 'VER') {
+        } else if (formattedInput.slice(5) === "VER") {
             setCommandOutput(`Displays the Windows version.\n\nVER`)
           }
-      } else if (formattedInput === 'VER') {
+      } else if (formattedInput === "VER") {
         setCommandOutput(`Microsoft Windows [Version 6.1.7601]`)
       } else {
-        setCommandOutput(`'${commandInput}' is not recognized as an internal or external command, operable program or batch file.`)
+        setCommandOutput(`"${commandInput}" is not recognized as an internal or external command, operable program or batch file.`)
       }
-      setCommandInput('')
+      setCommandInput("")
     }
   };
   
@@ -816,6 +887,91 @@ const CommandPromptWindow = ({ onClose }) => {
           <div className="placeholder">
             <div className="inputcontainer"><div>C:\Windows\System32&gt;&nbsp;</div><input type="text" id="commandinput" value={commandInput} onChange={handleCommandInput} onKeyDown={handleKeyPress}></input></div>
             <textarea id="commandoutput" rows={4} disabled value={commandOutput}></textarea>
+          </div>
+        </div>
+      </div>
+    </Rnd>
+  );
+};
+
+const WallpaperWindow = ({ onClose }) => {
+  const [selectedIcon, setSelectedIcon] = useState(null);
+  const wallpaperRef1 = useRef(null);
+  const wallpaperRef2 = useRef(null);
+  const [currentWallpaper, setCurrentWallpaper] = useState("seven")
+
+  const handleClick = (id) => {
+    if (selectedIcon === id) {
+      if (id === "seven") {
+        setCurrentWallpaper(id)
+        Array.from(document.getElementsByClassName("App")).forEach((element) => {element.style.backgroundImage = "url(../images/wallpaper.jpg)"});
+      } else if (id === "xp") {
+        setCurrentWallpaper(id)
+        Array.from(document.getElementsByClassName("App")).forEach((element) => {element.style.backgroundImage = "url(../images/wallpaper2.jpg)"});
+      }
+      setSelectedIcon(null)
+    } else {
+      setSelectedIcon(id);
+    }
+  };
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (
+        wallpaperRef1.current &&
+        !wallpaperRef1.current.contains(event.target) &&
+        wallpaperRef2.current &&
+        !wallpaperRef2.current.contains(event.target)
+      ) {
+        setSelectedIcon(null);
+      }
+    };
+
+    document.addEventListener("click", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, []);
+
+  return (
+    <Rnd
+      default={{
+        x: 200,
+        y: 200
+      }}
+      enableResizing={false}
+      dragHandleClassName="title-bar"
+    >
+      <div className="window active">
+        <div className="title-bar">
+          <div className="title-bar-text">Wallpaper</div>
+          <div className="title-bar-controls">
+            <button aria-label="Close" onClick={onClose}></button>
+          </div>
+        </div>
+        <div className="window-body has-space">
+          <div className="wallpapercontainer">
+            <Icon
+              id="seven"
+              isSelected={selectedIcon === "seven" || currentWallpaper === "seven"}
+              onClick={() => handleClick("seven")}
+              ref={wallpaperRef1}
+            >
+              <div className="picture wallpaper">
+                <img src="images/wallpaper.jpg" alt="Windows 7" />
+              </div>
+            </Icon>
+            <Icon
+              id="xp"
+              isSelected={selectedIcon === "xp" || currentWallpaper === "xp"}
+              onClick={() => handleClick("xp")}
+              ref={wallpaperRef2}
+            >
+              <div className="picture wallpaper">
+                <img src="images/wallpaper2.jpg" alt="Windows XP" />
+              </div>
+            </Icon>
           </div>
         </div>
       </div>
