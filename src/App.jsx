@@ -41,6 +41,7 @@ function App() {
   const [showUpdate, setShowUpdate] = useState(false);
   const [updateProgress, setUpdateProgress] = useState(0);
   const timerRef = useRef(null);
+  const [showStart, setShowStart] = useState(false);
 
   const getVolumeIcon = () => {
     if (!playSounds) return "tray/audio0.png";
@@ -55,8 +56,8 @@ function App() {
     else return "tray/action1.png";
   };
 
-  const handleClick = (id) => {
-    if (selectedIcon === id) {
+  const handleClick = (id, start) => {
+    if (selectedIcon === id || start) {
       if (id === "about") {
         if (!openWindows["about"]) {
           addAboutWindow();
@@ -225,6 +226,16 @@ function App() {
       document.exitFullscreen()
     }
   };
+
+  const handleSearch = (query) => {
+    Array.from(document.getElementsByClassName("leftbutton")).forEach((element) => {
+      if (!element.innerText.toLowerCase().includes(query.toLowerCase())) {
+        element.style.display = "none";
+      } else {
+        element.style.display = "flex";
+      }
+    })
+  }
 
   const closeWindow = (type) => {
     const updatedOpenWindows = { ...openWindows };
@@ -529,8 +540,47 @@ useEffect(() => {
         <div className="taskbar fg">
           <div className="left">
             <div className="start start-button">
-              <img className="start start-normal" src="icons/start.png" alt="Start"/>
+              <img className="start start-normal" src="icons/start.png" alt="Start" onClick={() => {setShowStart(!showStart)}}/>
             </div>
+            {showStart &&
+              <div className="startcontainer">
+                <div className="window" id="startmenu">
+                  <div className="window-body" id="startbody">
+                    <div className="startleft">
+                      <ul role="menu" id="startlist">
+                        <li role="menuitem" className="leftbutton" id="startbutton" tabIndex="0" aria-haspopup="true">Getting Started</li>
+                        <li role="menuitem" className="leftbutton"><a id="startbutton" onClick={() => {handleClick("notepad", true)}}>Notepad</a></li>
+                        <li role="menuitem" className="leftbutton"><a id="startbutton" onClick={() => {handleClick("internet", true)}}>Internet</a></li>
+                        <li role="menuitem" className="leftbutton"><a id="startbutton" onClick={() => {handleClick("chat", true)}}>Chat</a></li>
+                        <li role="menuitem" className="leftbutton"><a id="startbutton" onClick={() => {handleClick("pet", true)}}>Virtual Pet</a></li>
+                        <li role="menuitem" className="leftbutton"><a id="startbutton" onClick={() => {handleClick("commandprompt", true)}}>Command Prompt</a></li>
+                      </ul>
+                      <div className="startsearchcontainer">
+                        <input className="startsearch" type="search" placeholder="Search programs and files" onChange={() => {handleSearch(event.target.value)}}/>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="startright">
+                      <div className="window glass" id="profilecontainer">
+                        <div className="window-body" id="profilebody">
+                          <img id="profilepicture" src="images/profilepicture.png"/>
+                        </div>
+                      </div>
+                      <ul role="menu" id="startlist">
+                        <li role="menuitem" className="rightbutton"><a id="startbutton">Admin</a></li>
+                        <li role="menuitem" className="rightbutton"><a id="startbutton">Documents</a></li>
+                        <li role="menuitem" className="rightbutton"><a id="startbutton">Pictures</a></li>
+                        <li role="menuitem" className="rightbutton has-divider"><a id="startbutton">Music</a></li>
+                        <li role="menuitem" className="rightbutton has-divider"><a id="startbutton" onClick={() => {handleClick("computer", true)}}>Computer</a></li>
+                        <li role="menuitem" className="rightbutton"><a id="startbutton">Control Panel</a></li>
+                        <li role="menuitem" className="rightbutton"><a id="startbutton">Devices and Printers</a></li>
+                        <li role="menuitem" className="rightbutton"><a id="startbutton">Default Programs</a></li>
+                        <li role="menuitem" className="rightbutton" ><a id="startbutton">Help and Support</a></li>
+                      </ul>
+                    </div>
+                </div>
+              </div>
+            }
           </div>
           <div className="right">
             <div className="tray">
