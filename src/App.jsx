@@ -42,6 +42,7 @@ function App() {
   const [updateProgress, setUpdateProgress] = useState(0);
   const timerRef = useRef(null);
   const [showStart, setShowStart] = useState(false);
+  const [currentWallpaper, setCurrentWallpaper] = useState("seven");
 
   const getVolumeIcon = () => {
     if (!playSounds) return "tray/audio0.png";
@@ -182,7 +183,7 @@ function App() {
   };
 
   const addWallpaperWindow = () => {
-    const newWindow = <WallpaperWindow key={windows.length} onClose={() => closeWindow("wallpaper")} />;
+    const newWindow = <WallpaperWindow key={windows.length} onClose={() => closeWindow("wallpaper")} currentWallpaper={currentWallpaper} setCurrentWallpaper={setCurrentWallpaper}/>;
     setWindows([...windows, newWindow]);
     setOpenWindows({ ...openWindows, wallpaper: true });
   };
@@ -944,18 +945,20 @@ const CommandPromptWindow = ({ onClose }) => {
   );
 };
 
-const WallpaperWindow = ({ onClose }) => {
+const WallpaperWindow = ({ onClose, currentWallpaper, setCurrentWallpaper }) => {
   const [selectedIcon, setSelectedIcon] = useState(null);
   const wallpaperRef1 = useRef(null);
   const wallpaperRef2 = useRef(null);
-  const [currentWallpaper, setCurrentWallpaper] = useState("seven")
+  const [localWallpaper, setLocalWallpaper] = useState(currentWallpaper)
 
   const handleClick = (id) => {
     if (selectedIcon === id) {
       if (id === "seven") {
+        setLocalWallpaper(id)
         setCurrentWallpaper(id)
         Array.from(document.getElementsByClassName("App")).forEach((element) => {element.style.backgroundImage = "url(../images/wallpaper.jpg)"});
       } else if (id === "xp") {
+        setLocalWallpaper(id)
         setCurrentWallpaper(id)
         Array.from(document.getElementsByClassName("App")).forEach((element) => {element.style.backgroundImage = "url(../images/wallpaper2.jpg)"});
       }
@@ -1004,7 +1007,7 @@ const WallpaperWindow = ({ onClose }) => {
           <div className="wallpapercontainer">
             <Icon
               id="seven"
-              isSelected={selectedIcon === "seven" || currentWallpaper === "seven"}
+              isSelected={selectedIcon === "seven" || localWallpaper === "seven"}
               onClick={() => handleClick("seven")}
               ref={wallpaperRef1}
             >
@@ -1014,7 +1017,7 @@ const WallpaperWindow = ({ onClose }) => {
             </Icon>
             <Icon
               id="xp"
-              isSelected={selectedIcon === "xp" || currentWallpaper === "xp"}
+              isSelected={selectedIcon === "xp" || localWallpaper === "xp"}
               onClick={() => handleClick("xp")}
               ref={wallpaperRef2}
             >
