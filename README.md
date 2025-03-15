@@ -40,7 +40,7 @@
 
 - [ ] Windows Live Messenger with friends and chat tab - TD
 - [ ] Complex horror experience with many features - NTD
-- [ ] Bigger default window size and the ability to resize - WIP
+- [ ] Bigger default window size with the ability to resize and focus - WIP
 
 ## License
 
