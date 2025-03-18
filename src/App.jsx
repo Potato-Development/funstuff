@@ -9,6 +9,8 @@ import defaultsound from "./assets/sounds/default.wav";
 import startupsound from "./assets/sounds/startup.mp3";
 import shutdownsound from "./assets/sounds/shutdown.mp3";
 import Clock from "react-live-clock";
+import ZeroMd from "zero-md";
+customElements.define('zero-md', ZeroMd)
 
 function App() {
   const [selectedIcon, setSelectedIcon] = useState(null);
@@ -636,11 +638,8 @@ const AboutWindow = ({ onClose }) => {
             <button aria-label="Close" onClick={onClose}></button>
           </div>
         </div>
-        <div className="window-body has-space">
-          <div className="placeholder">
-            <p>Drag Me!</p>
-            <p>Work in Progress...</p>
-          </div>
+        <div className="window-body has-space aboutwindow">
+            <zero-md src="README.md"></zero-md>
         </div>
       </div>
     </Rnd>

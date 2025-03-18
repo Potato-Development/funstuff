@@ -40,6 +40,10 @@
   height: 150px;
 }
 
+.aboutwindow {
+  padding: 0 !important;
+}
+
 /* Icons */
 
 i {

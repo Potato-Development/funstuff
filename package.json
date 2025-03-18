@@ -15,7 +15,8 @@
     "react-dom": "^18.3.1",
     "react-live-clock": "^6.1.23-beta",
     "react-rnd": "^10.4.11",
-    "use-sound": "^4.0.3"
+    "use-sound": "^4.0.3",
+    "zero-md": "^3.1.7"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
