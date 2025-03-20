@@ -9,7 +9,7 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background-image: url(../public/images/wallpaper.jpg);
+    background-image: url(../images/wallpaper.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -240,7 +240,7 @@ p, h1, h2, h3, h4, h5, h6, span, a, b, i, u, strong, em, small, big, textarea {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-image: url(../public/images/update.jpg);
+  background-image: url(../images/update.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
