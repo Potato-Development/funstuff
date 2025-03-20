@@ -5,7 +5,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Potato-Development/funstuff">
-    <img src="public/logo180.png" alt="Logo" width="80" height="80">
+    <img src="public/logo180.png" alt="Logo" width="80" height="80" onerror="this.onerror=null; this.src='logo180.png'">
   </a>
 
 <h3 align="center">Fun Stuff</h3>
