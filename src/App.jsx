@@ -48,16 +48,16 @@ function App() {
   const [currentWallpaper, setCurrentWallpaper] = useState("seven");
 
   const getVolumeIcon = () => {
-    if (!playSounds) return "public/tray/audio0.png";
-    if (clickVolume >= 0 && clickVolume < 0.1) return "public/tray/audio1.png";
-    else if (clickVolume <= 0.3) return "public/tray/audio4.png";
-    else if (clickVolume <= 0.6) return "public/tray/audio3.png";
-    else return "public/tray/audio2.png";
+    if (!playSounds) return "tray/audio0.png";
+    if (clickVolume >= 0 && clickVolume < 0.1) return "tray/audio1.png";
+    else if (clickVolume <= 0.3) return "tray/audio4.png";
+    else if (clickVolume <= 0.6) return "tray/audio3.png";
+    else return "tray/audio2.png";
   };
 
   const getActionIcon = () => {
-    if (!actionRead) return "public/tray/action2.png";
-    else return "public/tray/action1.png";
+    if (!actionRead) return "tray/action2.png";
+    else return "tray/action1.png";
   };
 
   const handleClick = (id, start) => {
@@ -362,7 +362,7 @@ useEffect(() => {
               <span className="loader animate updatespinner" aria-label="Loading"></span>
               <span className="updatetext">Configuring Windows updates<br/>{updateProgress}% complete<br/>Do not turn off your computer.</span>
             </div>
-            <img className="updatelogo" src="public/images/sevenlogo.png"></img>
+            <img className="updatelogo" src="images/sevenlogo.png"></img>
         </div>
       }
       <div className="iconcontainer">
@@ -373,7 +373,7 @@ useEffect(() => {
           ref={iconRef1}
         >
           <div className="picture">
-            <img src="public/icons/about.png" alt="About" />
+            <img src="icons/about.png" alt="About" />
           </div>
           <div className="name">
             <span>About</span>
@@ -386,7 +386,7 @@ useEffect(() => {
           ref={iconRef2}
         >
           <div className="picture">
-            <img src="public/icons/pet.png" alt="Virtual Pet" />
+            <img src="icons/pet.png" alt="Virtual Pet" />
           </div>
           <div className="name">
             <span>Virtual Pet</span>
@@ -399,7 +399,7 @@ useEffect(() => {
           ref={iconRef3}
         >
           <div className="picture">
-            <img src="public/icons/chat.png" alt="Chat" />
+            <img src="icons/chat.png" alt="Chat" />
           </div>
           <div className="name">
             <span>Chat</span>
@@ -412,7 +412,7 @@ useEffect(() => {
           ref={iconRef4}
         >
           <div className="picture">
-            <img src="public/icons/internet.png" alt="Internet Explorer" />
+            <img src="icons/internet.png" alt="Internet Explorer" />
           </div>
           <div className="name">
             <span>Internet</span>
@@ -425,7 +425,7 @@ useEffect(() => {
           ref={iconRef5}
         >
           <div className="picture">
-            <img src="public/icons/computer.png" alt="Computer" />
+            <img src="icons/computer.png" alt="Computer" />
           </div>
           <div className="name">
             <span>Computer</span>
@@ -438,7 +438,7 @@ useEffect(() => {
           ref={iconRef6}
         >
           <div className="picture">
-            <img src="public/icons/recyclebin.png" alt="Recycle Bin" />
+            <img src="icons/recyclebin.png" alt="Recycle Bin" />
           </div>
           <div className="name">
             <span>Recycle Bin</span>
@@ -451,7 +451,7 @@ useEffect(() => {
           ref={iconRef7}
         >
           <div className="picture">
-            <img src="public/icons/horror.png" alt="Horror" />
+            <img src="icons/horror.png" alt="Horror" />
           </div>
           <div className="name">
             <span>Horror</span>
@@ -464,7 +464,7 @@ useEffect(() => {
           ref={iconRef8}
         >
           <div className="picture">
-            <img src="public/icons/update.png" alt="Update" />
+            <img src="icons/update.png" alt="Update" />
           </div>
           <div className="name">
             <span>Update</span>
@@ -477,7 +477,7 @@ useEffect(() => {
           ref={iconRef9}
         >
           <div className="picture">
-            <img src="public/icons/notepad.png" alt="Notepad" />
+            <img src="icons/notepad.png" alt="Notepad" />
           </div>
           <div className="name">
             <span>Notepad</span>
@@ -490,7 +490,7 @@ useEffect(() => {
           ref={iconRef10}
         >
           <div className="picture">
-            <img src="public/icons/taskbar.png" alt="Taskbar" />
+            <img src="icons/taskbar.png" alt="Taskbar" />
           </div>
           <div className="name">
             <span>Taskbar</span>
@@ -503,7 +503,7 @@ useEffect(() => {
           ref={iconRef11}
         >
           <div className="picture">
-            <img src="public/icons/cmd.png" alt="Command Prompt" />
+            <img src="icons/cmd.png" alt="Command Prompt" />
           </div>
           <div className="name">
             <span>Terminal</span>
@@ -516,7 +516,7 @@ useEffect(() => {
           ref={iconRef12}
         >
           <div className="picture">
-            <img src="public/icons/fullscreen.png" alt="Full Screen" />
+            <img src="icons/fullscreen.png" alt="Full Screen" />
           </div>
           <div className="name">
             <span>Full Screen</span>
@@ -529,7 +529,7 @@ useEffect(() => {
           ref={iconRef13}
         >
           <div className="picture">
-            <img src="public/icons/wallpaper.png" alt="Wallpaper" />
+            <img src="icons/wallpaper.png" alt="Wallpaper" />
           </div>
           <div className="name">
             <span>Wallpaper</span>
@@ -544,7 +544,7 @@ useEffect(() => {
         <div className="taskbar fg">
           <div className="left">
             <div className="start start-button">
-              <img className="start start-normal" src="public/icons/start.png" alt="Start" onClick={() => {setShowStart(!showStart)}}/>
+              <img className="start start-normal" src="icons/start.png" alt="Start" onClick={() => {setShowStart(!showStart)}}/>
             </div>
             {showStart &&
               <div className="startcontainer">
@@ -567,7 +567,7 @@ useEffect(() => {
                   <div className="startright">
                       <div className="window glass" id="profilecontainer">
                         <div className="window-body" id="profilebody">
-                          <img id="profilepicture" src="public/images/profilepicture.png"/>
+                          <img id="profilepicture" src="images/profilepicture.png"/>
                         </div>
                       </div>
                       <ul role="menu" id="startlist">
@@ -589,7 +589,7 @@ useEffect(() => {
           <div className="right">
             <div className="tray">
               <img className="trayicon action" src={getActionIcon()} alt="Action" onClick={handleAction}></img>
-              <img className="trayicon network" src="public/tray/network.png" alt="Network"></img>
+              <img className="trayicon network" src="tray/network.png" alt="Network"></img>
               <img className="trayicon audio" src={getVolumeIcon()} alt="Audio" onClick={handleAudioPanel}></img>
               <div className="timecontainer">
                 <Clock format={"HH:mm A"} ticking={true}/>
@@ -1012,7 +1012,7 @@ const WallpaperWindow = ({ onClose, currentWallpaper, setCurrentWallpaper }) => 
               ref={wallpaperRef1}
             >
               <div className="picture wallpaper">
-                <img src="public/images/wallpaper.jpg" alt="Windows 7" />
+                <img src="images/wallpaper.jpg" alt="Windows 7" />
               </div>
             </Icon>
             <Icon
@@ -1022,7 +1022,7 @@ const WallpaperWindow = ({ onClose, currentWallpaper, setCurrentWallpaper }) => 
               ref={wallpaperRef2}
             >
               <div className="picture wallpaper">
-                <img src="public/images/wallpaper2.jpg" alt="Windows XP" />
+                <img src="images/wallpaper2.jpg" alt="Windows XP" />
               </div>
             </Icon>
           </div>
