@@ -639,7 +639,7 @@ const AboutWindow = ({ onClose }) => {
           </div>
         </div>
         <div className="window-body has-space aboutwindow">
-            <zero-md src="README.md"></zero-md>
+            <zero-md src="/README.md"></zero-md>
         </div>
       </div>
     </Rnd>
