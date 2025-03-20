@@ -11,6 +11,7 @@ import shutdownsound from "./assets/sounds/shutdown.mp3";
 import Clock from "react-live-clock";
 import ZeroMd from "zero-md";
 customElements.define('zero-md', ZeroMd)
+const aboutFile = new URL("../README.md", import.meta.url).href
 
 function App() {
   const [selectedIcon, setSelectedIcon] = useState(null);
@@ -639,7 +640,7 @@ const AboutWindow = ({ onClose }) => {
           </div>
         </div>
         <div className="window-body has-space aboutwindow">
-            <zero-md src="../README.md"></zero-md>
+            <zero-md src={aboutFile}></zero-md>
         </div>
       </div>
     </Rnd>
