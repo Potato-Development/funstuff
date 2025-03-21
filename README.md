@@ -4,7 +4,7 @@
 
 <br />
 <div align="center">
-  <a href="https://github.com/Potato-Development/funstuff">
+  <a href="https://github.com/Potato-Development/funstuff" target="_blank">
     <img src="public/logo180.png" alt="Logo" width="80" height="80" onerror="this.onerror=null; this.src='logo180.png'">
   </a>
 
@@ -13,20 +13,22 @@
   <p align="center">
     A fun website styled to look like Windows 7, built in React.
     <br />
-    <a href="https://reactfunstuff.vercel.app"><strong>Demo</strong></a>
+    <a href="https://reactfunstuff.vercel.app" target="_blank"><strong>Demo</strong></a>
     <br />
     <br />
-    <a href="https://github.com/Potato-Development/funstuff/blob/master/src/App.js">View the Code</a>
+    <a href="https://github.com/Potato-Development/funstuff/blob/master/src/App.jsx" target="_blank">View the Code</a>
     ·
-    <a href="https://github.com/Potato-Development/funstuff/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    <a href="https://github.com/Potato-Development/funstuff/issues/new?labels=bug&template=bug-report---.md" target="_blank">Report Bug</a>
     ·
-    <a href="https://github.com/Potato-Development/funstuff/issues/new?labels=enhancement&template=feature-request---.md">Request a Feature</a>
+    <a href="https://github.com/Potato-Development/funstuff/issues/new?labels=enhancement&template=feature-request---.md" target="_blank">Request a Feature</a>
   </p>
 </div>
 
 ## Built With
 
-[![React][React.js]][React-url]
+<a href="https://reactjs.org" target="_blank">
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React"/>
+</a>
 
 ## Features
 
@@ -48,20 +50,17 @@ Distributed under the GNU General Public License. See `LICENSE` for more informa
 
 ## Contact
 
-Me - [MysteryFlask](https://github.com/MysteryFlask)
+Me - <a href="https://github.com/MysteryFlask" target="_blank">MysteryFlask</a>
 
-Organization - [Potato-Development](https://github.com/Potato-Development)
+Organization - <a href="https://github.com/Potato-Development" target="_blank">Potato-Development</a><br>
 
-Project Link - [https://github.com/Potato-Development/funstuff](https://github.com/Potato-Development/funstuff)
+Repository - <a href="https://github.com/Potato-Development/funstuff" target="_blank">Potato-Development/funstuff</a>
 
 ## Acknowledgments
 
-* [khang-nd](https://github.com/khang-nd) for creating [7.css](https://github.com/khang-nd/7.css) which I used heavily for this project.
-* [salmanarif](https://www.deviantart.com/salmanarif) and [Animelove_1105](http://www.rw-designer.com/user/105799) for the original icon files.
-* [The64thGamer](https://www.spriters-resource.com/submitter/The64thGamer/) and [Siul](https://www.spriters-resource.com/submitter/Siul/) for the sprite files.
-* All the people of [this thread](https://wink.messengergeek.com/t/resource-hacking-wlm-2009) for the Windows Live Messenger files.
-* [Michaelsoft Binbows 7](https://win7.nota-robot.com/) and [Andy's Desk](https://desk.glitchy.website/) for inspiration.
-* [This](https://archive.org/details/explorer-archive) archive for the original start menu icon.
-
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://reactjs.org/
+* <a href="https://github.com/khang-nd" target="_blank">khang-nd</a> for creating <a href="https://github.com/khang-nd/7.css" target="_blank">7.css</a> which I used heavily for this project.
+* <a href="https://www.deviantart.com/salmanarif" target="_blank">salmanarif</a> and <a href="http://www.rw-designer.com/user/105799" target="_blank">Animelove_1105</a> for the original icon files.
+* <a href="https://www.spriters-resource.com/submitter/The64thGamer/" target="_blank">The64thGamer</a> and <a href="https://www.spriters-resource.com/submitter/Siul/" target="_blank">Siul</a> for the sprite files.
+* All the people of <a href="https://wink.messengergeek.com/t/resource-hacking-wlm-2009" target="_blank">this thread</a> for the Windows Live Messenger files.
+* <a href="https://win7.nota-robot.com/" target="_blank">Michaelsoft Binbows 7</a> and <a href="https://desk.glitchy.website/" target="_blank">Andy's Desk</a> for inspiration.
+* <a href="https://archive.org/details/explorer-archive" target="_blank">This</a> archive for the original start menu icon.
