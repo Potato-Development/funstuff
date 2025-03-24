@@ -196,7 +196,7 @@ function App() {
   };
 
   const handleHorrorStart = () => {
-    alert("Something spooky is brewing...");
+    Array.from(document.getElementsByClassName("App")).forEach((element) => {element.style.filter = "hue-rotate(120deg)"});
   };
 
   const handleUpdateStart = () => {
