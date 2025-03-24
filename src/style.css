@@ -44,6 +44,10 @@
   padding: 0 !important;
 }
 
+zero-md {
+  max-height: 85vh;
+}
+
 /* Icons */
 
 i {
