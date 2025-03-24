@@ -10,8 +10,9 @@ import startupsound from "./assets/sounds/startup.mp3";
 import shutdownsound from "./assets/sounds/shutdown.mp3";
 import Clock from "react-live-clock";
 import ZeroMd from "zero-md";
-customElements.define('zero-md', ZeroMd)
-const aboutFile = new URL("../README.md", import.meta.url).href
+customElements.define('zero-md', ZeroMd);
+const aboutFile = new URL("../README.md", import.meta.url).href;
+import error from "./assets/error.json";
 
 function App() {
   const [selectedIcon, setSelectedIcon] = useState(null);
@@ -46,6 +47,7 @@ function App() {
   const timerRef = useRef(null);
   const [showStart, setShowStart] = useState(false);
   const [currentWallpaper, setCurrentWallpaper] = useState("seven");
+  const [showError, setShowError] = useState(false);
 
   const getVolumeIcon = () => {
     if (!playSounds) return "tray/audio0.png";
@@ -196,7 +198,8 @@ function App() {
   };
 
   const handleHorrorStart = () => {
-    Array.from(document.getElementsByClassName("App")).forEach((element) => {element.style.filter = "hue-rotate(120deg)"});
+    setShowError(true);
+    playError();
   };
 
   const handleUpdateStart = () => {
@@ -285,7 +288,17 @@ function App() {
         }
   }, [showUpdate]);
 
-useEffect(() => {
+  useEffect(() => {
+    if (showError) {
+      document.getElementById("errorscreen").requestFullscreen()
+    } else {
+      if (document.fullscreenElement) {
+        document.exitFullscreen()
+      }
+    }
+  }, [showError]);
+
+  useEffect(() => {
     const handleChange = () => {
       if (!document.fullscreenElement && showUpdate) {
         setShowUpdate(false);
@@ -298,6 +311,45 @@ useEffect(() => {
     };
   }, [showUpdate]);
 
+  useEffect(() => {
+    const handleChange = () => {
+      if (!document.fullscreenElement && showError) {
+        setShowError(false);
+        playStartup();
+      }
+    };
+    document.addEventListener("fullscreenchange", handleChange);
+    return () => {
+      document.removeEventListener("fullscreenchange", handleChange);
+    };
+  }, [showError]);
+
+  useEffect(() => {
+    let initialTimeout;
+    let effectTimeout;
+
+    const handleEffect = () => {
+      document.getElementById("errorscreen").style.filter = "hue-rotate(90deg)"
+      effectTimeout = setTimeout(() => {
+        document.getElementById("errorscreen").style.filter = "none"
+      }, Math.floor(Math.random() * (250 - 100 + 1)) + 100);
+
+      const interval = Math.floor(Math.random() * (10000 - 2500 + 1)) + 2500;
+      initialTimeout = setTimeout(handleEffect, interval);
+    }
+
+    if (showError) {
+      initialTimeout = setTimeout(() => {
+          handleEffect();
+      }, Math.floor(Math.random() * (1000 - 250 + 1)) + 250);
+    }
+
+    return () => {
+      clearTimeout(initialTimeout);
+      clearTimeout(effectTimeout);
+    }
+  }, [showError])
+  
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (
@@ -363,6 +415,11 @@ useEffect(() => {
               <span className="updatetext">Configuring Windows updates<br/>{updateProgress}% complete<br/>Do not turn off your computer.</span>
             </div>
             <img className="updatelogo" src="images/sevenlogo.png"></img>
+        </div>
+      }
+      {showError &&
+        <div id="errorscreen">
+            {error.map((line, index) => (<span key={index}>{line}{index < error.length - 1 && <><br/><br/></>}</span>))}
         </div>
       }
       <div className="iconcontainer">
