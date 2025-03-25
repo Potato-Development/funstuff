@@ -213,7 +213,7 @@ function App() {
 
   const handleAction = () => {
     setActionOpen(!actionOpen);
-    setActionRead(true);
+    setActionRead(!actionRead);
   };
 
   const handleToggleTaskbar = () => {
@@ -1122,7 +1122,7 @@ const AudioPanel = ({ clickVolume, setClickVolume, playSounds, setPlaySounds, pl
 };
 
 const Action = () => {
-  return(
+  return (
     <div role="tooltip" className="is-top is-left actionballoon">This is an example of a desktop notification.</div>
   )
 }
