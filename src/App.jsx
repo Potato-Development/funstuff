@@ -10,7 +10,7 @@ import startupsound from "./assets/sounds/startup.mp3";
 import shutdownsound from "./assets/sounds/shutdown.mp3";
 import Clock from "react-live-clock";
 import ZeroMd from "zero-md";
-customElements.define('zero-md', ZeroMd);
+customElements.define("zero-md", ZeroMd);
 const aboutFile = new URL("../README.md", import.meta.url).href;
 import error from "./assets/error.json";
 
@@ -48,6 +48,7 @@ function App() {
   const [showStart, setShowStart] = useState(false);
   const [currentWallpaper, setCurrentWallpaper] = useState("seven");
   const [showError, setShowError] = useState(false);
+  const [actionContent, setActionContent] = useState("")
 
   const getVolumeIcon = () => {
     if (!playSounds) return "tray/audio0.png";
@@ -194,7 +195,7 @@ function App() {
   };
 
   const handleRecycleBin = () => {
-    alert("Recycle Bin clicked");
+    handleAction("Recycle Bin clicked!");
   };
 
   const handleHorrorStart = () => {
@@ -211,7 +212,8 @@ function App() {
     setAudioPanelOpen(!audioPanelOpen);
   };
 
-  const handleAction = () => {
+  const handleAction = (content) => {
+    setActionContent(content);
     setActionOpen(!actionOpen);
     setActionRead(!actionRead);
   };
@@ -323,32 +325,6 @@ function App() {
       document.removeEventListener("fullscreenchange", handleChange);
     };
   }, [showError]);
-
-  useEffect(() => {
-    let initialTimeout;
-    let effectTimeout;
-
-    const handleEffect = () => {
-      document.getElementById("errorscreen").style.filter = "hue-rotate(90deg)"
-      effectTimeout = setTimeout(() => {
-        document.getElementById("errorscreen").style.filter = "none"
-      }, Math.floor(Math.random() * (250 - 100 + 1)) + 100);
-
-      const interval = Math.floor(Math.random() * (10000 - 2500 + 1)) + 2500;
-      initialTimeout = setTimeout(handleEffect, interval);
-    }
-
-    if (showError) {
-      initialTimeout = setTimeout(() => {
-          handleEffect();
-      }, Math.floor(Math.random() * (1000 - 250 + 1)) + 250);
-    }
-
-    return () => {
-      clearTimeout(initialTimeout);
-      clearTimeout(effectTimeout);
-    }
-  }, [showError])
   
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -645,7 +621,7 @@ function App() {
           </div>
           <div className="right">
             <div className="tray">
-              <img className="trayicon action" src={getActionIcon()} alt="Action" onClick={handleAction}></img>
+              <img className="trayicon action" src={getActionIcon()} alt="Action" onClick={() => handleAction("This is an example of a desktop notification.")}></img>
               <img className="trayicon network" src="tray/network.png" alt="Network"></img>
               <img className="trayicon audio" src={getVolumeIcon()} alt="Audio" onClick={handleAudioPanel}></img>
               <div className="timecontainer">
@@ -660,7 +636,7 @@ function App() {
         <AudioPanel clickVolume={clickVolume} setClickVolume={setClickVolume} playSounds={playSounds} setPlaySounds={setPlaySounds} playDefault={playDefault} />
       )}
       {actionOpen && (
-        <Action/>
+        <Action content={actionContent}/>
       )}
     </div>
   )
@@ -1121,9 +1097,9 @@ const AudioPanel = ({ clickVolume, setClickVolume, playSounds, setPlaySounds, pl
   );
 };
 
-const Action = () => {
+const Action = ({ content }) => {
   return (
-    <div role="tooltip" className="is-top is-left actionballoon">This is an example of a desktop notification.</div>
+    <div role="tooltip" className="is-top is-left actionballoon">{content}</div>
   )
 }
 
