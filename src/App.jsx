@@ -759,15 +759,15 @@ const InternetWindow = ({ onClose }) => {
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
-      if (searchInput.trim() === "") {
-        setCurrentWebsite("https://example.com")
-        setSearchInput("https://example.com")
-      } else if (!searchInput.startsWith("http://") && !searchInput.startsWith("https://")) {
-        setCurrentWebsite("http://" + searchInput)
-        setSearchInput("http://" + searchInput)
-      } else {
-        setCurrentWebsite(searchInput)
-        setSearchInput(searchInput)
+      try {
+        const url = new URL(searchInput);
+        if (url.protocol === "http:" || url.protocol === "https:") {
+          setCurrentWebsite(url.href);
+        } else {
+          setCurrentWebsite("https://example.com");
+        }
+      } catch {
+        setCurrentWebsite("https://example.com");
       }
     }
   };
