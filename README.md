@@ -40,8 +40,8 @@
 
     WIP - Work in Progress │ NTD - Next to Do │ TD - To Do
 
-- [ ] Windows Live Messenger with friends and chat tab - TD
-- [ ] Complex horror experience with many features - NTD
+- [ ] Better rendering for About window - TD
+- [ ] Windows Live Messenger with friends and chat tab - NTD
 - [ ] Bigger default window size with the ability to resize and focus - WIP
 
 ## License
@@ -60,7 +60,7 @@ Repository - <a href="https://github.com/Potato-Development/funstuff" target="_b
 
 * <a href="https://github.com/khang-nd" target="_blank">khang-nd</a> for creating <a href="https://github.com/khang-nd/7.css" target="_blank">7.css</a> which I used heavily for this project.
 * <a href="https://www.deviantart.com/salmanarif" target="_blank">salmanarif</a> and <a href="http://www.rw-designer.com/user/105799" target="_blank">Animelove_1105</a> for the original icon files.
-* <a href="https://www.spriters-resource.com/submitter/The64thGamer/" target="_blank">The64thGamer</a> and <a href="https://www.spriters-resource.com/submitter/Siul/" target="_blank">Siul</a> for the sprite files.
+* <a href="https://www.spriters-resource.com/submitter/The64thGamer" target="_blank">The64thGamer</a> and <a href="https://www.spriters-resource.com/submitter/Siul" target="_blank">Siul</a> for the sprite files.
 * All the people of <a href="https://wink.messengergeek.com/t/resource-hacking-wlm-2009" target="_blank">this thread</a> for the Windows Live Messenger files.
-* <a href="https://win7.nota-robot.com/" target="_blank">Michaelsoft Binbows 7</a> and <a href="https://desk.glitchy.website/" target="_blank">Andy's Desk</a> for inspiration.
+* <a href="https://win7.nullp.tr" target="_blank">Michaelsoft Binbows 7</a> and <a href="https://desk.glitchy.website" target="_blank">Andy's Desk</a> for inspiration.
 * <a href="https://archive.org/details/explorer-archive" target="_blank">This</a> archive for the original start menu icon.

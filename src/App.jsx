@@ -48,7 +48,9 @@ function App() {
   const [showStart, setShowStart] = useState(false);
   const [currentWallpaper, setCurrentWallpaper] = useState("seven");
   const [showError, setShowError] = useState(false);
-  const [actionContent, setActionContent] = useState("")
+  const [actionContent, setActionContent] = useState("");
+  const startRef = useRef(null);
+  const startButtonRef = useRef(null);
 
   const getVolumeIcon = () => {
     if (!playSounds) return "tray/audio0.png";
@@ -382,6 +384,25 @@ function App() {
     }
   }, [updateProgress, showUpdate])
 
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (
+        startRef.current && 
+        !startRef.current.contains(event.target) && 
+        startButtonRef.current && 
+        !startButtonRef.current.contains(event.target)
+      ) {
+        setShowStart(false)
+      }
+    }
+
+    document.addEventListener("click", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, [])
+
   return (
     <div className="App" onMouseDownCapture={() => {if (playSounds) playClick()}}>
       {showUpdate &&
@@ -577,10 +598,10 @@ function App() {
         <div className="taskbar fg">
           <div className="left">
             <div className="start start-button">
-              <img className="start start-normal" src="icons/start.png" alt="Start" onClick={() => {setShowStart(!showStart)}}/>
+              <img className="start start-normal" src="icons/start.png" alt="Start" onClick={() => {setShowStart(!showStart)}} ref={startButtonRef}/>
             </div>
             {showStart &&
-              <div className="startcontainer">
+              <div className="startcontainer" ref={startRef}>
                 <div className="window" id="startmenu">
                   <div className="window-body" id="startbody">
                     <div className="startleft">
